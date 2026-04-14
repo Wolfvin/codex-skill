@@ -6,13 +6,17 @@ Tujuan: copy folder `.codex/` ke project baru, jalankan bootstrap sekali, lalu s
 
 ```bash
 bash .codex/bootstrap.sh
+<<<<<<< HEAD
 powershell -ExecutionPolicy Bypass -File .codex/bootstrap.ps1
+=======
+>>>>>>> origin/main
 ```
 
 Lalu reload VS Code window.
 
 ## Struktur
 
+<<<<<<< HEAD
 ```text
 .codex/
   bootstrap.sh
@@ -49,12 +53,59 @@ Lalu reload VS Code window.
     tagged-work-intake/
     tech-debt-tracker/
     user_propt/
+=======
+```
+.codex/
+├── bootstrap.sh
+├── config.toml
+├── tools/
+│   └── repo-intake-cli.sh
+│   └── agentic-cli.sh
+│   └── agentic-hub.sh
+│   └── skill-navigator.sh
+├── memory/
+│   └── MEMORY.md
+└── skills/
+    ├── bootstrap/
+    ├── checkpoint/
+    ├── mcp-manager/
+    ├── repo-intake/
+    ├── official-skill-sync/
+    ├── focused-fix/
+    ├── spec-driven-workflow/
+    ├── pr-review-expert/
+    ├── codebase-onboarding/
+    ├── tech-debt-tracker/
+    └── mcp-server-builder/
+    └── agentic-cli/
+    └── agentic-hub/
+    └── agent-runtime-advanced/
+    └── delivery-pipeline/
+    └── tagged-work-intake/
+    └── structured-rpi/
+    └── anti-hallucination-suite/
+    └── anti-hallucination/
+    └── cross-checker/
+    └── source-verifier/
+    └── confidence-scorer/
+    └── citation-enforcer/
+    └── uncertainty-detector/
+    └── output-auditor/
+    └── context-grounding/
+    └── truth-finder/
+    └── answer-analyzer/
+    └── skill-router/
+    └── vibe-tauri/
+    └── skills-search/
+    └── cc-plugins-ops/
+>>>>>>> origin/main
 ```
 
 ## Agentic Coding Stack (Import dari `alirezarezvani/claude-skills`)
 
 Skill yang difokuskan untuk performa coding agentic:
 
+<<<<<<< HEAD
 - `pr-review-expert`: review PR berbasis risiko (security/contracts/test delta)
 - `tech-debt-tracker`: inventory + prioritas debt berbasis dampak
 - `mcp-server-builder`: desain MCP server dari kontrak API
@@ -66,6 +117,26 @@ Skill yang difokuskan untuk performa coding agentic:
 - `delivery-pipeline`: canonical flow (mode `spec`, `rpi`, `delivery`)
 - `tagged-work-intake`: trigger `[]` tag menjadi mode kerja terstruktur
 - `anti-hallucination-suite`: canonical verification suite + behavioral guardrails
+=======
+- `focused-fix`: perbaikan fitur end-to-end (scope -> trace -> diagnose -> fix -> verify)
+- `spec-driven-workflow`: spec-first delivery, anti scope creep
+- `pr-review-expert`: review PR berbasis risiko (security/contracts/test delta)
+- `codebase-onboarding`: onboarding cepat ke repo baru
+- `tech-debt-tracker`: inventory + prioritas debt berbasis dampak
+- `mcp-server-builder`: desain MCP server dari kontrak API
+- `repo-intake`: alur ekstraksi knowledge dari repo eksternal ke `.codex`
+- `official-skill-sync`: sinkronisasi skill terkurasi resmi dari `openai/skills`
+- `agentic-cli`: CLI orkestra intake + sintesis multi-repo
+- `agentic-hub`: command center untuk intake + connector/plugin ops
+- `skill-router`: routing prompt -> skill set paling relevan
+- `agent-runtime-advanced`: dependency graph + compaction + worker loop + recovery
+- `delivery-pipeline`: gate-based flow (spec -> implement -> findings -> release)
+- `tagged-work-intake`: trigger `[]` tag menjadi mode kerja terstruktur
+- `structured-rpi`: Research-Plan-Implement dengan phase gate & approval
+- `anti-hallucination-suite`: protokol anti-hallucination (grounding -> citation -> cross-check -> audit)
+- `anti-hallucination set`: `anti-hallucination`, `cross-checker`, `source-verifier`, `confidence-scorer`, `citation-enforcer`, `uncertainty-detector`, `output-auditor`, `context-grounding`, `truth-finder`, `answer-analyzer`
+- `vibe-tauri`: loop vibe coding UI Tauri berbasis screenshot -> implement -> validate -> iterate
+>>>>>>> origin/main
 - `skills-search`: search/install skill Claude Code via CCPM registry
 - `cc-plugins-ops`: marketplace + plugin ops untuk Claude Code (cc-plugins)
 
@@ -89,8 +160,12 @@ Output:
 
 ## Agentic CLI (Multi-Repo Orchestrator)
 
+<<<<<<< HEAD
 `agentic-cli` sekarang alias compatibility. Canonical command center: `agentic-hub`.
 Gunakan ini jika butuh command lama untuk intake beberapa repo sekaligus + auto ringkas:
+=======
+Gunakan ini untuk intake beberapa repo sekaligus + auto ringkas:
+>>>>>>> origin/main
 
 ```bash
 bash .codex/tools/agentic-cli.sh intake <repo-url> [repo-url ...]
@@ -142,6 +217,7 @@ bash .codex/tools/agentic-hub.sh connector add-http openaiDeveloperDocs https://
 bash .codex/tools/agentic-hub.sh connector add-stdio codeReviewGraph .tools/code-review-graph-venv/bin/code-review-graph serve
 ```
 
+<<<<<<< HEAD
 ## Workflow Templates (Archon-style)
 
 Template workflow deterministik untuk loop plan -> implement -> verify:
@@ -151,6 +227,8 @@ Template workflow deterministik untuk loop plan -> implement -> verify:
 .codex/tools/workflows/idea-to-pr.yaml
 ```
 
+=======
+>>>>>>> origin/main
 ## Source Hygiene
 
 - Jangan mengimpor code dari repo yang berisi source leak atau hak cipta meragukan.
@@ -188,7 +266,11 @@ Prinsip pakai:
   - `tauri`
   - `codeReviewGraph`
 - Link skill project ke `~/.codex/skills` (best effort)
+<<<<<<< HEAD
 - Inisialisasi `.codex/memory/akp2i_projects.md` (name, stack, tanggal)
+=======
+- Inisialisasi `.codex/memory/MEMORY.md` (name, stack, tanggal)
+>>>>>>> origin/main
 
 ## Rule Docs-First (Context7)
 
@@ -228,7 +310,10 @@ Output graph disimpan di:
 cp -r /path/sumber/.codex /path/project-baru/
 cd /path/project-baru
 bash .codex/bootstrap.sh
+<<<<<<< HEAD
 powershell -ExecutionPolicy Bypass -File .codex/bootstrap.ps1
+=======
+>>>>>>> origin/main
 ```
 
 ## Catatan
@@ -236,6 +321,7 @@ powershell -ExecutionPolicy Bypass -File .codex/bootstrap.ps1
 - Copy `.codex` saja tidak bisa auto-run sendiri (batasan keamanan OS/editor).
 - Setup aman dijalankan ulang (idempotent).
 - Tiap project punya `.tools` dan `.code-review-graph` sendiri (isolated).
+<<<<<<< HEAD
 
 ## Windows PowerShell Commands
 
@@ -273,3 +359,5 @@ powershell -ExecutionPolicy Bypass -File .codex/tools/skill-navigator.ps1 sugges
 - tech-debt-tracker
 - user_propt
 
+=======
+>>>>>>> origin/main

@@ -86,7 +86,11 @@ case "$cmd" in
 - Curate reports listed in summary into:
   - .codex/skills/*
   - .codex/README.md
+<<<<<<< HEAD
   - .codex/memory/akp2i_projects.md
+=======
+  - .codex/memory/MEMORY.md
+>>>>>>> origin/main
 SYNTH
 
     echo "[agentic-cli] summary: $summary"
