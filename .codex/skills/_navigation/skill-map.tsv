@@ -1,0 +1,19 @@
+skill	category	keywords
+repo-intake	repo-learning	repo github clone intake extract curate
+official-skill-sync	repo-learning	official skills openai anthropic sync refresh curated
+checkpoint	memory	checkpoint memory archive remember ringkas compact
+agent-runtime-advanced	runtime	compaction context task graph worker recovery long session
+agentic-hub	orchestration	cli command center connector plugin mcp bootstrap
+skill-router	orchestration	route suggest choose skill intent prompt mapping
+mcp-manager	tooling	mcp integrate server idea connect support
+mcp-server-builder	tooling	build mcp api contract schema server
+bootstrap	setup	setup init bootstrap project environment
+delivery-pipeline	planning	spec implement findings release gate
+tagged-work-intake	planning	tag bracket [feature] [bugfix] intake mode
+pr-review-expert	quality	review pr blast radius regression security
+tech-debt-tracker	quality	tech debt prioritize remediation
+anti-hallucination-suite	quality	accuracy verify hallucination claim grounding audit
+skills-search	tooling	search discover install manage claude code skills ccpm registry
+cc-plugins-ops	tooling	plugin marketplace claude plugin install plugin.json versioning slash command
+code-simplifier	quality	simplify refactor readability maintainability no behavior change
+debug-tauri	frontend	tauri debug fix ui playwright mcp end-to-end

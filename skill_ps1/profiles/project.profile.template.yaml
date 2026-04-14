@@ -1,0 +1,36 @@
+﻿# Copy this file to project.profile.<name>.yaml and customize.
+profile:
+  name: template
+  environment: dev
+  project_root: D:\\path\\to\\project
+  shell: windows-powershell-5.1
+
+runtime:
+  required_commands:
+    - Get-Process
+    - Invoke-WebRequest
+    - Start-Process
+
+api:
+  base_url: http://localhost:3000
+  health_path: /health
+  timeout_seconds: 20
+  expected_status: 200
+  expected_body_contains: ok
+
+process:
+  target_name: node
+  working_set_mb_threshold: 2048
+  cpu_percent_threshold: 85
+
+ui:
+  url: http://localhost:3000
+  browser: edge
+  open_devtools: false
+
+cleanup:
+  dry_run: true
+  target_patterns:
+    - logs\\*.tmp
+    - logs\\*.bak
+    - temp\\*

@@ -1,0 +1,7 @@
+[mcp_servers.tauri]
+command = "npx"
+args = ["-y", "@hypothesi/tauri-mcp-server"]
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["-y", "@playwright/mcp@latest"]

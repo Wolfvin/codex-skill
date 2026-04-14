@@ -1,0 +1,83 @@
+﻿name: commands-reference
+version: 2.0
+status: stable
+purpose: Canonical PowerShell command reference used by skill_ps1 templates.
+
+categories:
+  core_runtime:
+    - Set-StrictMode
+    - Start-Sleep
+    - Get-Date
+    - Write-Host
+    - Out-Null
+
+  path_and_filesystem:
+    - Test-Path
+    - Join-Path
+    - Split-Path
+    - Resolve-Path
+    - Get-ChildItem
+    - New-Item
+    - Remove-Item
+
+  process_and_system:
+    - Get-Process
+    - Start-Process
+    - Stop-Process
+    - Get-Service
+    - Get-Command
+
+  http_and_api:
+    - Invoke-WebRequest
+    - Invoke-RestMethod
+
+  metrics_and_objects:
+    - Measure-Object
+    - New-Object
+
+safe_commands:
+  - Set-StrictMode
+  - Start-Sleep
+  - Get-Date
+  - Write-Host
+  - Out-Null
+  - Test-Path
+  - Join-Path
+  - Split-Path
+  - Resolve-Path
+  - Get-ChildItem
+  - New-Item
+  - Get-Process
+  - Start-Process
+  - Get-Service
+  - Get-Command
+  - Invoke-WebRequest
+  - Invoke-RestMethod
+  - Measure-Object
+  - New-Object
+
+restricted_commands:
+  - name: Remove-Item
+    reason: Potentially destructive file deletion.
+    policy: Allow only with explicit user intent, scoped path under project root, and preferably DryRun first.
+  - name: Stop-Process
+    reason: Can terminate unrelated workloads.
+    policy: Require explicit process name/PID confirmation in automation flow.
+
+script_coverage:
+  templates:
+    - scaffold.ps1
+    - env-check.ps1
+    - cleanup.ps1
+    - smoke-api.ps1
+    - trigger-ui.ps1
+    - node-sim.ps1
+    - debug-cycle.ps1
+    - debug-cycle-extended.ps1
+
+logging_example: "2026-04-06T11:00:00+07:00 [INFO] Starting smoke-api"
+
+exit_codes:
+  0: success
+  1: runtime_failure
+  2: input_validation_failure

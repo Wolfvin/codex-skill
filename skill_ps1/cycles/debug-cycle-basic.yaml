@@ -1,0 +1,12 @@
+﻿name: debug-cycle-basic
+version: 1.0
+goal: Fast triage for reproducible issues.
+
+sequence:
+  - run: templates/env-check.ps1
+  - run: templates/smoke-api.ps1
+  - run: templates/debug-cycle.ps1
+
+outputs:
+  - logs/debug-basic.log
+  - summary with pass/fail per step

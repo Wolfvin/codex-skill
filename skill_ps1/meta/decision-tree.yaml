@@ -1,0 +1,35 @@
+﻿version: 2
+description: Routing guide to choose the right template quickly.
+
+steps:
+  - id: load_profile
+    question: Do you have a project profile file?
+    yes: Use profile values as defaults for all script parameters.
+    no: Start from profiles/project.profile.template.yaml.
+
+  - id: check_environment
+    question: Need to validate runtime or dependencies first?
+    yes: templates/env-check.ps1
+    no: choose_workflow
+
+  - id: choose_workflow
+    question: What is your main task?
+    routes:
+      api_smoke: templates/smoke-api.ps1
+      ui_debug: templates/trigger-ui.ps1
+      process_debug_basic: templates/debug-cycle.ps1
+      process_debug_extended: templates/debug-cycle-extended.ps1
+      node_load_simulation: templates/node-sim.ps1
+      workspace_cleanup: templates/cleanup.ps1
+      new_script_scaffold: templates/scaffold.ps1
+
+  - id: post_run
+    question: Need cleanup or repeatability check?
+    options:
+      cleanup: templates/cleanup.ps1
+      rerun_same_inputs: templates/debug-cycle.ps1
+
+decision_rules:
+  - Always run env-check on a new machine or fresh CI agent.
+  - Use debug-cycle-extended for intermittent failures or race conditions.
+  - Keep dry-run enabled by default unless user explicitly requests execution.

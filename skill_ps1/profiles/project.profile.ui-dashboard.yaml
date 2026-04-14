@@ -1,0 +1,35 @@
+﻿profile:
+  name: ui-dashboard
+  environment: dev
+  project_root: D:\\Workspace\\projects\\fecttral_projects
+  shell: powershell-7+
+
+runtime:
+  required_commands:
+    - Get-Process
+    - Invoke-WebRequest
+    - Start-Process
+
+api:
+  base_url: http://localhost:5173
+  health_path: /
+  timeout_seconds: 20
+  expected_status: 200
+  expected_body_contains: html
+
+process:
+  target_name: node
+  working_set_mb_threshold: 2048
+  cpu_percent_threshold: 85
+
+ui:
+  url: http://localhost:5173
+  browser: chrome
+  open_devtools: true
+
+cleanup:
+  dry_run: true
+  target_patterns:
+    - .vite\\*
+    - logs\\*.tmp
+    - temp\\*

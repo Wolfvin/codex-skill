@@ -1,0 +1,14 @@
+﻿name: debug-cycle-extended
+version: 1.0
+goal: Investigate flaky issues with repeated probes.
+
+sequence:
+  - run: templates/env-check.ps1
+  - run: templates/debug-cycle-extended.ps1
+  - run: templates/smoke-api.ps1
+  - run: templates/trigger-ui.ps1
+
+outputs:
+  - logs/debug-extended.log
+  - metrics snapshot per iteration
+  - top error signatures

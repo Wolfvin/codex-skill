@@ -1,0 +1,61 @@
+﻿meta:
+  name: skill_ps1
+  owner: Codex Upt
+  version: 2.1.0
+  status: stable
+  purpose: Cross-project PowerShell automation skillpack with safe defaults.
+  entrypoint: meta/decision-tree.yaml
+  default_shell: windows-powershell-5.1
+  supports:
+    - windows-powershell-5.1
+    - powershell-7+
+
+standards:
+  config_driven: true
+  hardcoded_paths_allowed: false
+  default_dry_run: true
+  idempotent_expected: true
+  required_exit_codes:
+    success: 0
+    failure: 1
+    validation_error: 2
+  logging:
+    format: "{timestamp} [{level}] {message}"
+    levels: [INFO, WARN, ERROR]
+  required_inputs:
+    - project_root
+    - environment
+  optional_inputs:
+    - profile_file
+    - timeout_seconds
+
+load_order:
+  - patterns/core.yaml
+  - utility/env-check.yaml
+  - patterns/process.yaml
+  - patterns/http.yaml
+  - patterns/health.yaml
+  - cycles/debug-cycle-basic.yaml
+  - cycles/debug-cycle-extended.yaml
+  - cycles/node-sim.yaml
+  - smoke/api.yaml
+  - smoke/ui-devtools.yaml
+  - reference/commands.yaml
+  - reference/compatibility.yaml
+  - utility/cleanup.yaml
+
+templates:
+  scaffold: templates/scaffold.ps1
+  debug_cycle_basic: templates/debug-cycle.ps1
+  debug_cycle_extended: templates/debug-cycle-extended.ps1
+  smoke_api: templates/smoke-api.ps1
+  trigger_ui: templates/trigger-ui.ps1
+  node_sim: templates/node-sim.ps1
+  env_check: templates/env-check.ps1
+  cleanup: templates/cleanup.ps1
+
+profiles:
+  default_template: profiles/project.profile.template.yaml
+  examples:
+    - profiles/project.profile.local-api.yaml
+    - profiles/project.profile.ui-dashboard.yaml

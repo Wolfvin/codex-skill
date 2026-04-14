@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evolve"
+  short_description: "Intake, sync, plugin ops, and skill consolidation"
+  default_prompt: "Use evolve to improve this skill ecosystem end-to-end."

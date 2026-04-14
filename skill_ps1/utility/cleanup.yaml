@@ -1,0 +1,13 @@
+﻿name: cleanup
+version: 1.0
+purpose: Remove temporary artifacts safely.
+
+default_targets:
+  - logs/*.tmp
+  - logs/*.bak
+  - temp/*
+
+safety:
+  - Dry-run is default.
+  - Refuse paths outside project root.
+  - Refuse wildcard delete at root.

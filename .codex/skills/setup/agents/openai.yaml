@@ -1,0 +1,4 @@
+interface:
+  display_name: "Setup"
+  short_description: "Bootstrap and build operational SOP"
+  default_prompt: "Use setup to initialize this project and prepare operational SOP scripts."

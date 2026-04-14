@@ -1,0 +1,4 @@
+interface:
+  display_name: "Command Center"
+  short_description: "Run agent workflow from one CLI"
+  default_prompt: "Use command-center to run this bootstrap/intake/connector workflow."

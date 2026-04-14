@@ -1,0 +1,17 @@
+﻿name: node-sim
+version: 1.0
+goal: Simulate request load for local Node services.
+
+inputs:
+  required: [url]
+  optional: [iterations, parallel, timeout_seconds]
+
+defaults:
+  iterations: 20
+  parallel: 4
+  timeout_seconds: 10
+
+output:
+  - success_count
+  - failure_count
+  - average_latency_ms

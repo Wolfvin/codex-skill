@@ -1,0 +1,14 @@
+﻿name: env-check
+version: 1.0
+purpose: Verify shell, commands, and working paths before execution.
+
+checks:
+  - powershell_version
+  - required_commands_available
+  - project_root_exists
+  - logs_directory_writable
+
+required_commands_default:
+  - Get-Process
+  - Invoke-WebRequest
+  - Start-Process

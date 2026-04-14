@@ -1,0 +1,4 @@
+interface:
+  display_name: "MCP Builder"
+  short_description: "Integrate or build MCP servers"
+  default_prompt: "Use mcp-builder to integrate this tool via MCP or build a new MCP server if needed."

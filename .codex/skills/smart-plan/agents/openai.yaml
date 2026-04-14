@@ -1,0 +1,4 @@
+interface:
+  display_name: "Smart Plan"
+  short_description: "Plan complex work and verify claims before delivery"
+  default_prompt: "Use smart-plan to plan this task and run verification checks before final output."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review"
+  short_description: "Simplify code and review PR risk"
+  default_prompt: "Use review to run simplification and high-signal PR checks."

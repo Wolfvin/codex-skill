@@ -1,0 +1,4 @@
+interface:
+  display_name: "Debug-n-Check"
+  short_description: "Frontend console + backend terminal debug loop"
+  default_prompt: "Use debug-n-check with console or terminal mode based on the bug source."

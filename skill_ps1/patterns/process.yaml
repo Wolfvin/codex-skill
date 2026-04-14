@@ -1,0 +1,19 @@
+﻿name: process
+version: 1.0
+purpose: Standard process lifecycle checks.
+
+flow:
+  - detect_process
+  - optional_start
+  - wait_for_stable_state
+  - capture_metrics
+  - stop_or_keep_running_based_on_flag
+
+process_fields:
+  required: [name]
+  optional: [path, arguments, working_directory]
+
+safety:
+  - Never kill unrelated process names.
+  - Print PID before stop action.
+  - Require explicit switch for force stop.
