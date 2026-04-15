@@ -37,6 +37,10 @@
 - Added structured RPI workflow (`structured-rpi`) from claude-code-toolkit.
 - Added anti-hallucination suite (truth-finder, answer-analyzer, source/citation checks).
 - Added `skills-search` (CCPM registry) and `cc-plugins-ops` (Claude Code plugin marketplace ops).
+- Enforced efficient web-search policy across sessions: `quick/native_search` first, escalate to metasearch/deep only when evidence is insufficient.
+- Imported `code-simplifier` from `plugins/code-simplifier/agents/code-simplifier.md` (source: `anthropics/claude-plugins-official`) with strict behavior-preserving scope.
+- Added MCP `tauri` (`@hypothesi/tauri-mcp-server`) for Tauri v2 UI inspection workflows.
+- Added MCP `playwright` (`@playwright/mcp@latest`) for browser capture and DOM inspection workflows.
 
 ## Memory Hygiene
 - Single-file memory only. No archives unless explicitly requested.

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://simonwillison.net/2025/Oct/16/claude-skills/">
+<title>Claude Skills are awesome, maybe a bigger deal than MCP</title>
+<script defer data-domain="simonwillison.net" src="https://plausible.io/js/plausible.js"></script>
+<link rel="alternate" type="application/atom+xml" title="Atom" href="/atom/everything/">
+<link rel="stylesheet" type="text/css" href="/static/css/all.css">
+<link rel="webmention" href="https://webmention.io/simonwillison.net/webmention">
+<link rel="pingback" href="https://webmention.io/simonwillison.net/xmlrpc">
+<meta name="author" content="Simon Willison">
+<meta property="og:site_name" content="Simon Willison’s Weblog">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://static.simonwillison.net/static/2025/claude-skills-card.jpg">
+<meta name="twitter:creator" content="@simonw">
+<meta property="og:url" content="https://simonwillison.net/2025/Oct/16/claude-skills/">
+<meta property="og:title" content="Claude Skills are awesome, maybe a bigger deal than MCP">
+<meta property="og:image" content="https://static.simonwillison.net/static/2025/claude-skills-card.jpg">
+<meta property="og:type" content="article">
+<meta property="og:description" content="Anthropic this morning introduced Claude Skills, a new pattern for making new abilities available to their models: Claude can now use Skills to improve how it performs specific tasks. Skills …">
+<meta property="og:updated_time" content="1760649918">
+
+
+
+
+
+<script>
+(function() { // Apply theme immediately to prevent flash
+  const theme = localStorage.getItem('theme');
+  if (theme === 'light' || theme === 'dark') {
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+})();
+</script>
+</head>
+<body class="smallhead">
+
+<div id="smallhead">
+  <div id="smallhead-inner">
+    <h1><a href="/">Simon Willison’s Weblog</a></h1>
+    <a id="smallhead-about" href="/about/#subscribe">Subscribe</a>
+  </div>
+</div><!-- #smallhead -->
+
+
+<div id="sponsored-banner" class="sponsor-scheme-sky">
+  <div id="sponsored-banner-inner">
+    <strong class="sponsored-label">Sponsored by:</strong> Teleport &mdash; Connect agents to your infra in seconds with Teleport Beams. Built-in identity. Zero secrets. <a href="https://fandf.co/4tq0sbV" rel="sponsored noopener" target="_blank">Get early access</a>
+  </div>
+</div>
+
+
+<div id="wrapper">
+<div id="primary">
+
+<div class="entry entryPage">
+
+
+<div data-permalink-context="/2025/Oct/16/claude-skills/">
+<h2>Claude Skills are awesome, maybe a bigger deal than MCP</h2>
+<p class="mobile-date">16th October 2025</p>
+
+
+
+<p>Anthropic this morning <a href="https://www.anthropic.com/news/skills">introduced Claude Skills</a>, a new pattern for making new abilities available to their models:</p>
+<blockquote>
+<p>Claude can now use <em>Skills</em> to improve how it performs specific tasks. Skills are folders that include instructions, scripts, and resources that Claude can load when needed.</p>
+<p>Claude will only access a skill when it’s relevant to the task at hand. When used, skills make Claude better at specialized tasks like working with Excel or following your organization’s brand guidelines.</p>
+</blockquote>
+<p>Their engineering blog has a <a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">more detailed explanation</a>. There’s also a new <a href="https://github.com/anthropics/skills">anthropics/skills</a> GitHub repo.</p>
+<p>(I inadvertently preempted their announcement of this feature when I reverse engineered and <a href="https://simonwillison.net/2025/Oct/10/claude-skills/">wrote about it last Friday</a>!)</p>
+<p>Skills are conceptually extremely simple: a skill is a Markdown file telling the model how to do something, optionally accompanied by extra documents and pre-written scripts that the model can run to help it accomplish the tasks described by the skill.</p>
+<p>Claude’s new <a href="https://www.anthropic.com/news/create-files">document creation abilities</a>, which accompanied <a href="https://simonwillison.net/2025/Sep/9/claude-code-interpreter/">their new code interpreter feature</a> in September, turned out to be entirely implemented using skills. Those are <a href="https://github.com/anthropics/skills/tree/main/document-skills">now available in Anthropic’s repo</a> covering <code>.pdf</code>, <code>.docx</code>, <code>.xlsx</code>, and <code>.pptx</code> files.</p>
+<p>There’s one extra detail that makes this a feature, not just a bunch of files on disk. At the start of a session Claude’s various harnesses can scan all available skill files and read a short explanation for each one from the frontmatter YAML in the Markdown file. This is <em>very</em> token efficient: each skill only takes up a few dozen extra tokens, with the full details only loaded in should the user request a task that the skill can help solve.</p>
+<ul>
+  <li><a href="https://simonwillison.net/2025/Oct/16/claude-skills/#trying-out-the-slack-gif-creator-skill">Trying out the slack-gif-creator skill</a></li>
+  <li><a href="https://simonwillison.net/2025/Oct/16/claude-skills/#skills-depend-on-a-coding-environment">Skills depend on a coding environment</a></li>
+  <li><a href="https://simonwillison.net/2025/Oct/16/claude-skills/#claude-as-a-general-agent">Claude Code as a General Agent</a></li>
+  <li><a href="https://simonwillison.net/2025/Oct/16/claude-skills/#skills-compared-to-mcp">Skills compared to MCP</a></li>
+  <li><a href="https://simonwillison.net/2025/Oct/16/claude-skills/#here-come-the-skills">Here come the Skills</a></li>
+  <li><a href="https://simonwillison.net/2025/Oct/16/claude-skills/#the-simplicity-is-the-point">The simplicity is the point</a></li>
+</ul>
+<h4 id="trying-out-the-slack-gif-creator-skill">Trying out the slack-gif-creator skill</h4>
+<p>Here’s that metadata for an example <a href="https://github.com/anthropics/skills/blob/main/slack-gif-creator/SKILL.md">slack-gif-creator skill</a> that Anthropic published this morning:</p>
+<blockquote>
+<p>Toolkit for creating animated GIFs optimized for Slack, with validators for size constraints and composable animation primitives. This skill applies when users request animated GIFs or emoji animations for Slack from descriptions like “make me a GIF for Slack of X doing Y”.</p>
+</blockquote>
+<p>I just tried this skill out in the Claude mobile web app, against Sonnet 4.5. First I enabled the slack-gif-creator skill <a href="https://claude.ai/settings/capabilities">in the settings</a>, then I prompted:</p>
+<blockquote>
+<p><code>Make me a gif for slack about how Skills are way cooler than MCPs</code></p>
+</blockquote>
+<p>And Claude <a href="https://claude.ai/share/eff7ae7b-b386-417b-9fa0-213fa76ace6e">made me this GIF</a>. Click to play (it’s almost epilepsy inducing, hence the click-to-play mechanism):</p>
+<p><img src="https://static.simonwillison.net/static/2025/skills_vs_mcps_still.gif" data-still="https://static.simonwillison.net/static/2025/skills_vs_mcps_still.gif" data-gif="https://static.simonwillison.net/static/2025/skills_vs_mcps.gif" data-state="stopped" role="button" aria-pressed="false" tabindex="0" style="cursor:pointer;max-width:100%" onload="(new Image).src=this.getAttribute('data-gif')" onclick="(function(el){     if (el.getAttribute('data-state') !== 'playing') {       var c = el.cloneNode(true);       c.src = el.getAttribute('data-gif');       c.setAttribute('data-state','playing');       c.setAttribute('aria-pressed','true');       el.parentNode.replaceChild(c, el);     } else {       el.setAttribute('data-state','stopped');       el.setAttribute('aria-pressed','false');       el.src = el.getAttribute('data-still');     }   })(this)" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();this.onclick(event);}"></p>
+<p>OK, this particular GIF is terrible, but the great thing about skills is that they’re very easy to iterate on to make them better.</p>
+<p>Here are some noteworthy snippets from <a href="https://gist.github.com/simonw/ef35bb9e6c514d1d596dac9227da482b">the Python script it wrote</a>, comments mine:</p>
+<pre><span class="pl-c"># Start by adding the skill's directory to the Python path</span>
+<span class="pl-k">import</span> <span class="pl-s1">sys</span>
+<span class="pl-s1">sys</span>.<span class="pl-c1">path</span>.<span class="pl-c1">insert</span>(<span class="pl-c1">0</span>, <span class="pl-s">'/mnt/skills/examples/slack-gif-creator'</span>)
+
+<span class="pl-k">from</span> <span class="pl-c1">PIL</span> <span class="pl-k">import</span> <span class="pl-v">Image</span>, <span class="pl-v">ImageDraw</span>, <span class="pl-v">ImageFont</span>
+<span class="pl-c"># This class lives in the core/ directory for the skill</span>
+<span class="pl-k">from</span> <span class="pl-s1">core</span>.<span class="pl-s1">gif_builder</span> <span class="pl-k">import</span> <span class="pl-v">GIFBuilder</span>
+
+<span class="pl-c"># ... code that builds the GIF ...</span>
+
+<span class="pl-c"># Save it to disk:</span>
+<span class="pl-s1">info</span> <span class="pl-c1">=</span> <span class="pl-s1">builder</span>.<span class="pl-c1">save</span>(<span class="pl-s">'/mnt/user-data/outputs/skills_vs_mcps.gif'</span>, 
+                    <span class="pl-s1">num_colors</span><span class="pl-c1">=</span><span class="pl-c1">128</span>, 
+                    <span class="pl-s1">optimize_for_emoji</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)
+
+<span class="pl-en">print</span>(<span class="pl-s">f"GIF created successfully!"</span>)
+<span class="pl-en">print</span>(<span class="pl-s">f"Size: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">info</span>[<span class="pl-s">'size_kb'</span>]:.1f<span class="pl-kos">}</span></span> KB (<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">info</span>[<span class="pl-s">'size_mb'</span>]:.2f<span class="pl-kos">}</span></span> MB)"</span>)
+<span class="pl-en">print</span>(<span class="pl-s">f"Frames: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">info</span>[<span class="pl-s">'frame_count'</span>]<span class="pl-kos">}</span></span>"</span>)
+<span class="pl-en">print</span>(<span class="pl-s">f"Duration: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">info</span>[<span class="pl-s">'duration_seconds'</span>]:.1f<span class="pl-kos">}</span></span>s"</span>)
+
+<span class="pl-c"># Use the check_slack_size() function to confirm it's small enough for Slack:</span>
+<span class="pl-s1">passes</span>, <span class="pl-s1">check_info</span> <span class="pl-c1">=</span> <span class="pl-en">check_slack_size</span>(<span class="pl-s">'/mnt/user-data/outputs/skills_vs_mcps.gif'</span>, <span class="pl-s1">is_emoji</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)
+<span class="pl-k">if</span> <span class="pl-s1">passes</span>:
+    <span class="pl-en">print</span>(<span class="pl-s">"✓ Ready for Slack!"</span>)
+<span class="pl-k">else</span>:
+    <span class="pl-en">print</span>(<span class="pl-s">f"⚠ File size: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">check_info</span>[<span class="pl-s">'size_kb'</span>]:.1f<span class="pl-kos">}</span></span> KB (limit: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">check_info</span>[<span class="pl-s">'limit_kb'</span>]<span class="pl-kos">}</span></span> KB)"</span>)</pre>
+<p>This is pretty neat. Slack GIFs need to be a maximum of 2MB, so the skill includes a validation function which the model can use to check the file size. If it’s too large the model can have another go at making it smaller.</p>
+<h4 id="skills-depend-on-a-coding-environment">Skills depend on a coding environment</h4>
+<p>The skills mechanism is <em>entirely dependent</em> on the model having access to a filesystem, tools to navigate it and the ability to execute commands in that environment.</p>
+<p>This is a common pattern for LLM tooling these days—ChatGPT Code Interpreter was the first big example of this <a href="https://simonwillison.net/2023/Apr/12/code-interpreter/">back in early 2023</a>, and the pattern later extended to local machines via coding agent tools such as Cursor, Claude Code, Codex CLI and Gemini CLI.</p>
+<p>This requirement is the biggest difference between skills and other previous attempts at expanding the abilities of LLMs, such as MCP and <a href="https://simonwillison.net/tags/chatgpt-plugins/">ChatGPT Plugins</a>. It’s a significant dependency, but it’s somewhat bewildering how much new capability it unlocks.</p>
+<p>The fact that skills are so powerful and simple to create is yet another argument in favor of making safe coding environments available to LLMs. The word <strong>safe</strong> there is doing a <em>lot</em> of work though! We really need to figure out how best to sandbox these environments such that attacks such as prompt injections are limited to an acceptable amount of damage.</p>
+<h4 id="claude-as-a-general-agent">Claude Code as a General Agent</h4>
+<p>Back in January I <a href="https://simonwillison.net/2025/Jan/10/ai-predictions/">made some foolhardy predictions about AI/LLMs</a>, including that “agents” would once again fail to happen:</p>
+<blockquote>
+<p>I think we are going to see a <em>lot</em> more froth about agents in 2025, but I expect the results will be a great disappointment to most of the people who are excited about this term. I expect a lot of money will be lost chasing after several different poorly defined dreams that share that name.</p>
+</blockquote>
+<p>I was entirely wrong about that. 2025 really has been the year of “agents”, no matter which of the many <a href="https://simonwillison.net/tags/agent-definitions/">conflicting definitions</a> you decide to use (I eventually settled on "<a href="https://simonwillison.net/2025/Sep/18/agents/">tools in a loop</a>").</p>
+<p><a href="https://www.claude.com/product/claude-code">Claude Code</a> is, with hindsight, poorly named. It’s not purely a coding tool: it’s a tool for general computer automation. <em>Anything</em> you can achieve by typing commands into a computer is something that can now be automated by Claude Code. It’s best described as a <strong>general agent</strong>. Skills make this a whole lot more obvious and explicit.</p>
+<p>I find the potential applications of this trick somewhat dizzying. Just thinking about this with my data journalism hat on: imagine a folder full of skills that covers tasks like the following:</p>
+<ul>
+<li>Where to get US census data from and how to understand its structure</li>
+<li>How to load data from different formats into SQLite or DuckDB using appropriate Python libraries</li>
+<li>How to publish data online, as Parquet files in S3 or pushed as tables to Datasette Cloud</li>
+<li>A skill defined by an experienced data reporter talking about how best to find the interesting stories in a new set of data</li>
+<li>A skill that describes how to build clean, readable data visualizations using D3</li>
+</ul>
+<p>Congratulations, you just built a “data journalism agent” that can discover and help publish stories against fresh drops of US census data. And you did it with a folder full of Markdown files and maybe a couple of example Python scripts.</p>
+<h4 id="skills-compared-to-mcp">Skills compared to MCP</h4>
+<p><a href="https://modelcontextprotocol.io/">Model Context Protocol</a> has attracted an enormous amount of buzz since its initial release back <a href="https://simonwillison.net/2024/Nov/25/model-context-protocol/">in November last year</a>. I like to joke that one of the reasons it took off is that every company knew they needed an “AI strategy”, and building (or announcing) an MCP implementation was an easy way to tick that box.</p>
+<p>Over time the limitations of MCP have started to emerge. The most significant is in terms of token usage: GitHub’s official MCP on its own famously consumes tens of thousands of tokens of context, and once you’ve added a few more to that there’s precious little space left for the LLM to actually do useful work.</p>
+<p>My own interest in MCPs has waned ever since I started taking coding agents seriously. Almost everything I might achieve with an MCP can be handled by a CLI tool instead. LLMs know how to call <code>cli-tool --help</code>, which means you don’t have to spend many tokens describing how to use them—the model can figure it out later when it needs to.</p>
+<p>Skills have exactly the same advantage, only now I don’t even need to implement a new CLI tool. I can drop a Markdown file in describing how to do a task instead, adding extra scripts only if they’ll help make things more reliable or efficient.</p>
+<h4 id="here-come-the-skills">Here come the Skills</h4>
+<p>One of the most exciting things about Skills is how easy they are to share. I expect many skills will be implemented as a single file—more sophisticated ones will be a folder with a few more.</p>
+<p>Anthropic have <a href="https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview">Agent Skills documentation</a> and a <a href="https://github.com/anthropics/claude-cookbooks/tree/main/skills">Claude Skills Cookbook</a>. I’m already thinking through ideas of skills I might build myself, like one on <a href="https://simonwillison.net/2025/Oct/8/claude-datasette-plugins/">how to build Datasette plugins</a>.</p>
+<p>Something else I love about the design of skills is there is nothing at all preventing them from being used with other models.</p>
+<p>You can grab a skills folder right now, point Codex CLI or Gemini CLI at it and say “read pdf/SKILL.md and then create me a PDF describing this project” and it will work, despite those tools and models having no baked in knowledge of the skills system.</p>
+<p>I expect we’ll see a Cambrian explosion in Skills which will make this year’s MCP rush look pedestrian by comparison.</p>
+<h4 id="the-simplicity-is-the-point">The simplicity is the point</h4>
+<p>I’ve seen a some push back against skills as being so simple they’re hardly a feature at all. Plenty of people have experimented with the trick of dropping extra instructions into a Markdown file and telling the coding agent to read that file before continuing with a task. <a href="https://agents.md/">AGENTS.md</a> is a well established pattern, and that file can already include instructions to “Read PDF.md before attempting to create a PDF”.</p>
+<p>The core simplicity of the skills design is why I’m so excited about it.</p>
+<p>MCP is a whole <a href="https://modelcontextprotocol.io/specification/2025-06-18">protocol specification</a>, covering hosts, clients, servers, resources, prompts, tools, sampling, roots, elicitation and three different transports (stdio, streamable HTTP and originally SSE).</p>
+<p>Skills are Markdown with a tiny bit of YAML metadata and some optional scripts in whatever you can make executable in the environment. They feel a lot closer to the spirit of LLMs—throw in some text and let the model figure it out.</p>
+<p>They outsource the hard parts to the LLM harness and the associated computer environment. Given everything we have learned about LLMs’ ability to run tools over the last couple of years I think that’s a very sensible strategy.</p>
+
+
+</div>
+<div class="entryFooter">Posted <a href="/2025/Oct/16/">16th October 2025</a> at 9:25 pm &middot; Follow me on <a href="https://fedi.simonwillison.net/@simon">Mastodon</a>, <a href="https://bsky.app/profile/simonwillison.net">Bluesky</a>, <a href="https://twitter.com/simonw">Twitter</a> or <a href="https://simonwillison.net/about/#subscribe">subscribe to my newsletter</a></div>
+<p class="edit-page-link" data-admin-url="/admin/blog/entry/9019/" style="display: none;"></p>
+
+</div>
+
+<div class="recent-articles">
+<h2>More recent articles</h2>
+<ul class="bullets">
+  
+    <li><a href="/2026/Apr/8/muse-spark/">Meta&#x27;s new model is Muse Spark, and meta.ai chat has some interesting tools</a> - 8th April 2026</li>
+  
+    <li><a href="/2026/Apr/7/project-glasswing/">Anthropic&#x27;s Project Glasswing - restricting Claude Mythos to security researchers - sounds necessary to me</a> - 7th April 2026</li>
+  
+    <li><a href="/2026/Apr/3/supply-chain-social-engineering/">The Axios supply chain attack used individually targeted social engineering</a> - 3rd April 2026</li>
+  
+</ul>
+</div>
+
+
+</div> <!-- #primary -->
+
+<div id="secondary">
+
+<div class="metabox">
+<p class="this-is">This is <strong>Claude Skills are awesome, maybe a bigger deal than MCP</strong> by Simon Willison, posted on <a href="/2025/Oct/16/">16th October 2025</a>.</p>
+
+
+    
+        <a class="item-tag" href="/tags/definitions/" rel="tag">
+            definitions
+            <span>51</span>
+        </a>
+    
+        <a class="item-tag" href="/tags/ai/" rel="tag">
+            ai
+            <span>1960</span>
+        </a>
+    
+        <a class="item-tag" href="/tags/prompt-engineering/" rel="tag">
+            prompt-engineering
+            <span>182</span>
+        </a>
+    
+        <a class="item-tag" href="/tags/generative-ai/" rel="tag">
+            generative-ai
+            <span>1740</span>
+        </a>
+    
+        <a class="item-tag" href="/tags/llms/" rel="tag">
+            llms
+            <span>1707</span>
+        </a>
+    
+        <a class="item-tag" href="/tags/anthropic/" rel="tag">
+            anthropic
+            <span>268</span>
+        </a>
+    
+        <a class="item-tag" href="/tags/claude/" rel="tag">
+            claude
+            <span>264</span>
+        </a>
+    
+        <a class="item-tag" href="/tags/code-interpreter/" rel="tag">
+            code-interpreter
+            <span>30</span>
+        </a>
+    
+        <a class="item-tag" href="/tags/ai-agents/" rel="tag">
+            ai-agents
+            <span>108</span>
+        </a>
+    
+        <a class="item-tag" href="/tags/coding-agents/" rel="tag">
+            coding-agents
+            <span>190</span>
+        </a>
+    
+        <a class="item-tag" href="/tags/claude-code/" rel="tag">
+            claude-code
+            <span>105</span>
+        </a>
+    
+        <a class="item-tag" href="/tags/skills/" rel="tag">
+            skills
+            <span>12</span>
+        </a>
+    
+
+
+<p><strong>Next:</strong> <a href="/2025/Oct/20/deepseek-ocr-claude-code/">Getting DeepSeek-OCR working on an NVIDIA Spark via brute force using Claude Code</a></p>
+
+
+<p><strong>Previous:</strong> <a href="/2025/Oct/14/nvidia-dgx-spark/">NVIDIA DGX Spark: great hardware, early days for the ecosystem</a></p>
+
+
+<section style="
+    /* .promo */
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    /* .variant-a */
+    border: 2px solid #6c3eb9;
+  ">
+  <h3 style="
+      /* h3 */
+      margin: 0 0 0.5rem;
+      font-size: 1.25rem;
+    ">
+    Monthly briefing
+  </h3>
+  <p style="
+      /* p */
+      margin: 0 0 1rem;
+      line-height: 1.4;
+    ">
+    Sponsor me for <strong>$10/month</strong> and get a curated email digest of the month's most important LLM developments.
+  </p>
+  <p style="
+      /* p */
+      margin: 0 0 1rem;
+      line-height: 1.4;
+    ">
+    Pay me to send you less!
+  </p>
+  <a href="https://github.com/sponsors/simonw/" style="
+      /* a.button */
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: #6c3eb9;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+    ">
+    Sponsor &amp; subscribe
+  </a>
+</section>
+</div>
+
+
+
+</div> <!-- #secondary -->
+</div> <!-- #wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+<div id="ft">
+    <ul>
+      <li><a href="/about/#disclosures">Disclosures</a></li>
+      <li><a href="/about/#about-site">Colophon</a></li>
+      <li>&copy;</li>
+      <li><a href="/2002/">2002</a></li>
+      <li><a href="/2003/">2003</a></li>
+      <li><a href="/2004/">2004</a></li>
+      <li><a href="/2005/">2005</a></li>
+      <li><a href="/2006/">2006</a></li>
+      <li><a href="/2007/">2007</a></li>
+      <li><a href="/2008/">2008</a></li>
+      <li><a href="/2009/">2009</a></li>
+      <li><a href="/2010/">2010</a></li>
+      <li><a href="/2011/">2011</a></li>
+      <li><a href="/2012/">2012</a></li>
+      <li><a href="/2013/">2013</a></li>
+      <li><a href="/2014/">2014</a></li>
+      <li><a href="/2015/">2015</a></li>
+      <li><a href="/2016/">2016</a></li>
+      <li><a href="/2017/">2017</a></li>
+      <li><a href="/2018/">2018</a></li>
+      <li><a href="/2019/">2019</a></li>
+      <li><a href="/2020/">2020</a></li>
+      <li><a href="/2021/">2021</a></li>
+      <li><a href="/2022/">2022</a></li>
+      <li><a href="/2023/">2023</a></li>
+      <li><a href="/2024/">2024</a></li>
+      <li><a href="/2025/">2025</a></li>
+      <li><a href="/2026/">2026</a></li>
+      <li>
+        <button id="theme-toggle" type="button" aria-label="Toggle theme">
+          <!-- Auto/System icon (default) -->
+          <svg id="icon-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2V4a8 8 0 1 0 0 16z"/></svg>
+          <!-- Light icon -->
+          <svg id="icon-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display:none"><path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z"/></svg>
+          <!-- Dark icon -->
+          <svg id="icon-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display:none"><path d="M10 7a7 7 0 0 0 12 4.9v.1c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2h.1A6.979 6.979 0 0 0 10 7zm-6 5a8 8 0 0 0 15.062 3.762A9 9 0 0 1 8.238 4.938 7.999 7.999 0 0 0 4 12z"/></svg>
+        </button>
+      </li>
+    </ul>
+</div>
+
+
+
+<style>image-gallery:not(:defined) img {max-height: 150px;}</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('h2[id],h3[id],h4[id],h5[id],h6[id]').forEach(el => {
+    const id = el.getAttribute('id');
+    const permalinkContext = el.closest('[data-permalink-context]');
+    if (permalinkContext) {
+      const url = permalinkContext.getAttribute('data-permalink-context');
+      const hashLink = document.createElement('a');
+      hashLink.style.borderBottom = 'none';
+      hashLink.style.color = '#666';
+      hashLink.style.fontSize = '1em';
+      hashLink.style.opacity = 0.8;
+      hashLink.setAttribute('href', url + '#' + id);
+      hashLink.innerText = '#';
+      el.appendChild(document.createTextNode('\u00A0'));
+      el.appendChild(hashLink);
+    }
+  });
+});
+</script>
+<script type="module">
+const config = [
+  {"tag": "lite-youtube", "js": "/static/lite-yt-embed.js", "css": "/static/lite-yt-embed.css"},
+  {"tag": "image-gallery", "js": "/static/image-gallery.js", "css": null}
+];
+for (const {tag, js, css} of config) {
+  if (document.querySelector(tag)) {
+    if (css) {
+      document.head.appendChild(
+        Object.assign(document.createElement('link'), {
+          rel: 'stylesheet',
+          href: css
+        })
+      );
+    }
+    if (js) {
+      await import(js);
+    }
+  }
+}
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.localStorage.getItem('ADMIN')) {
+      document.querySelectorAll('.edit-page-link').forEach(el => {
+        const url = el.getAttribute('data-admin-url');
+        if (url) {
+          const a = document.createElement('a');
+          a.href = url;
+          a.className = 'edit-link';
+          a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> Edit';
+          el.appendChild(a);
+          el.style.display = 'block';
+        }
+      });
+    }
+  });
+</script>
+<script>
+// Random tag navigation - shows button if recently came from tag random
+(function() {
+  const stored = localStorage.getItem('random_tag');
+  if (!stored) return;
+
+  try {
+    const data = JSON.parse(stored);
+    const elapsed = Date.now() - data.timestamp;
+
+    // Only show if within 5 seconds
+    if (elapsed > 5000) return;
+
+    const header = document.getElementById('smallhead-inner');
+    if (!header) return;
+
+    const btn = document.createElement('a');
+    btn.href = '/random/' + encodeURIComponent(data.tag) + '/';
+    btn.className = 'random-tag-nav';
+    btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"></circle><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"></circle><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"></circle><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"></circle><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"></circle></svg> Random ' + data.tag;
+
+    btn.addEventListener('click', function(e) {
+      // Bump the timestamp before navigating
+      localStorage.setItem('random_tag', JSON.stringify({
+        tag: data.tag,
+        timestamp: Date.now()
+      }));
+    });
+
+    // Insert before the Subscribe link
+    const subscribeLink = document.getElementById('smallhead-about');
+    if (subscribeLink) {
+      header.insertBefore(btn, subscribeLink);
+    } else {
+      header.appendChild(btn);
+    }
+  } catch (e) {
+    // Invalid JSON, clear it
+    localStorage.removeItem('random_tag');
+  }
+})();
+</script>
+<script>
+// Theme toggle functionality
+(function() {
+  const toggle = document.getElementById('theme-toggle');
+  const iconAuto = document.getElementById('icon-auto');
+  const iconLight = document.getElementById('icon-light');
+  const iconDark = document.getElementById('icon-dark');
+
+  // Theme states: 'auto' (default), 'light', 'dark'
+  function getTheme() {
+    return localStorage.getItem('theme') || 'auto';
+  }
+
+  function setTheme(theme) {
+    if (theme === 'auto') {
+      localStorage.removeItem('theme');
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      localStorage.setItem('theme', theme);
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+    updateIcon(theme);
+  }
+
+  function updateIcon(theme) {
+    iconAuto.style.display = theme === 'auto' ? 'block' : 'none';
+    iconLight.style.display = theme === 'light' ? 'block' : 'none';
+    iconDark.style.display = theme === 'dark' ? 'block' : 'none';
+
+    // Update aria-label for accessibility
+    const labels = {
+      'auto': 'Theme: Auto (system preference). Click to switch to light.',
+      'light': 'Theme: Light. Click to switch to dark.',
+      'dark': 'Theme: Dark. Click to switch to auto.'
+    };
+    toggle.setAttribute('aria-label', labels[theme]);
+  }
+
+  // Cycle through themes: auto -> light -> dark -> auto
+  function cycleTheme() {
+    const current = getTheme();
+    const next = current === 'auto' ? 'light' : current === 'light' ? 'dark' : 'auto';
+    setTheme(next);
+  }
+
+  // Initialize
+  updateIcon(getTheme());
+  toggle.addEventListener('click', cycleTheme);
+})();
+</script>
+</body>
+</html>

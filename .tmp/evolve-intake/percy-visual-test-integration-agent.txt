@@ -1,0 +1,274 @@
+Visual Test Integration Agent | BrowserStack Docs
+Products Featured
+Explore our popular products
+Web Testing
+Test websites and web apps on real browsers
+Mobile App Testing
+Test iOS & Android mobile apps on real devices
+Accessibility
+Automate accessibility compliance for websites & mobile apps
+Explore our popular products
+Web Testing
+Live
+Manual cross-browser testing
+Automate
+Browser automation cloud
+Accessibility Testing
+Automate web compliance
+Low Code Automation
+Automation without coding
+Testing Toolkit
+Essential manual testing tools
+Mobile App Testing
+App Live
+Real device testing
+App Automate
+Mobile app automation cloud
+App Accessibility Testing
+Automate mobile app compliance
+Management & Optimization
+Test Management
+Plan, track and manage tests
+Test websites and web apps on real browsers
+Manual Testing
+Live
+Cross-browser testing
+Testing Toolkit
+Essential manual testing tools
+Test Automation
+Automate
+Browser automation cloud
+Percy
+Visual testing & review
+Custom Device Lab
+Tailored test environments
+Salesforce Test Automation
+AI-Native Salesforce Testing
+Management & Optimization
+Test Management
+Plan, track, and manage tests
+Test Management for Jira
+Manage tests inside Jira
+Test Reporting & Analytics
+Monitor & optimize tests
+Automation without coding
+Low Code Automation
+AI-driven automated tests
+Website Scanner
+All-in-one website checker
+Test iOS & Android mobile apps on real devices
+Manual Testing
+App Live
+Real device testing
+Test Automation
+App Automate
+Mobile app automation cloud
+App Percy
+Visual testing & review
+Custom Device Lab
+Tailored test environments
+Management & Optimization
+Test Management
+Plan, track and manage tests
+Test Management for Jira
+Manage tests inside Jira
+Test Reporting & Analytics
+Monitor & optimize tests
+Automation without coding
+App Low Code Automation
+AI-driven automated tests
+Automate accessibility compliance for websites & mobile apps
+Design
+Layout Scanner
+Scan UI layouts
+Component Scanner
+Validate UI components
+Code
+Linter
+WCAG checks in your IDE
+Web testing
+Workflow Analyzer
+Test web workflows
+Test Automation
+Add WCAG checks to CI/CD
+Screen Readers
+Test NVDA, TalkBack, VoiceOver
+Assisted Tests
+Guided WCAG issue testing
+Mobile app testing
+Workflow Analyzer
+Test app workflows
+Test Automation
+Add WCAG checks to CI/CD
+Screen Readers
+Test Talkback & VoiceOver
+Monitor
+Website Scanner
+Schedule WCAG sitemap scans
+Explore BrowserStack for Enterprise Requestly
+Explore BrowserStack for Enterprise Requestly
+Explore Spectra for Web Spectra for App AI Agents
+Developers Documentation
+Support
+Status
+Release Notes
+Open Source
+Events
+Meetups
+BrowserStack Talks
+Community
+Discord Community
+AI Agents
+Pricing
+Sign in
+Free Trial
+Products Featured Explore our popular products Web Testing Test websites and web apps on real browsers Mobile App Testing Test iOS & Android mobile apps on real devices Accessibility Automate accessibility compliance for websites & mobile apps
+Developers
+AI Agents
+Pricing
+Sign In
+FREE TRIAL
+Featured
+Web Testing
+Live Manual cross-browser testing
+Automate Browser automation cloud
+Accessibility Testing Automate web compliance
+Low Code Automation Automation without coding
+Testing Toolkit Essential manual testing tools
+Mobile App Testing
+App Live Real device testing
+App Automate Mobile app automation cloud
+App Accessibility Testing Automate mobile app compliance
+Management & Optimization
+Test Management Plan, track and manage tests
+Web Testing
+Manual Testing
+Live Cross-browser testing
+Testing Toolkit Essential manual testing tools
+Test Automation
+Automate Browser automation cloud
+Percy Visual testing & review
+Custom Device Lab Tailored test environments
+Salesforce Test Automation AI-Native Salesforce Testing
+Management & Optimization
+Test Management Plan, track, and manage tests
+Test Management for Jira Manage tests inside Jira
+Test Reporting & Analytics Monitor & optimize tests
+Automation without coding
+Low Code Automation AI-driven automated tests
+Website Scanner All-in-one website checker
+Explore
+BrowserStack for Enterprise
+Requestly
+Mobile App Testing
+Manual Testing
+App Live Real device testing
+Test Automation
+App Automate Mobile app automation cloud
+App Percy Visual testing & review
+Custom Device Lab Tailored test environments
+Management & Optimization
+Test Management Plan, track and manage tests
+Test Management for Jira Manage tests inside Jira
+Test Reporting & Analytics Monitor & optimize tests
+Automation without coding
+App Low Code Automation AI-driven automated tests
+Explore
+BrowserStack for Enterprise
+Requestly
+Accessibility
+Design
+Layout Scanner Scan UI layouts
+Component Scanner Validate UI components
+Code
+Linter WCAG checks in your IDE
+Web testing
+Workflow Analyzer Test web workflows
+Test Automation Add WCAG checks to CI/CD
+Screen Readers Test NVDA, TalkBack, VoiceOver
+Assisted Tests Guided WCAG issue testing
+Mobile app testing
+Workflow Analyzer Test app workflows
+Test Automation Add WCAG checks to CI/CD
+Screen Readers Test Talkback & VoiceOver
+Monitor
+Website Scanner Schedule WCAG sitemap scans
+Explore
+Spectra for Web
+Spectra for App
+AI Agents
+Developers
+Documentation
+Support
+Status
+Release Notes
+Open Source
+Events
+Meetups
+BrowserStack Talks
+Community
+Discord Community
+Visual Test Integration Agent
+Automate Percy setup with a GitHub Copilot-like agent powered by BrowserStack MCP.
+The Visual Test Integration Agent streamlines the integration of Percy with your web projects by automating setup steps using AI-powered workflows. To get started with the agent, you follow steps such as connecting your IDE, configuring BrowserStack MCP, and initiating Percy integration. Once set up, the agent works within your IDE to streamline the integration process, making it faster and more efficient.
+The following video explains how the Visual Test Integration Agent works:
+Get started in just 5 minutes with this feature!
+Setup Agent is currently supported only on Percy Web. Use standard setup for mobile apps or Percy on Automate projects.
+Prerequisites
+Install an AI-powered IDE (e.g. Cursor) or a standard IDE with a compatible AI extension (e.g. VS Code with GitHub Copilot/Cline).
+Install Node.js v18+ .
+Remove any existing Percy or BrowserStack SDKs.
+Integration steps
+Follow these steps to quickly set up Percy integration using the Visual Test Integration Agent.
+STEP 1: Connect to BrowserStack MCP
+You can set up BrowserStack MCP using either the VS Code/Cursor method or the standard setup for Other IDEs.
+VS Code/Cursor
+Download and install the BrowserStack MCP server in VS Code (Requires VS Code to be installed) / Cursor (Requires Cursor to be installed).
+Click Start in your IDE to run BrowserStack MCP.
+Enter your BrowserStack username and access key to authenticate.
+Other IDEs
+Install BrowserStack MCP in your IDE In project root, open/create a .settings/mcp.json
+{ "servers" : { "browserstack" : { "command" : "npx" , "args" : [ "-y" , "@browserstack/mcp-server@latest" ], "env" : { "BROWSERSTACK_USERNAME" : "<username>" , "BROWSERSTACK_ACCESS_KEY" : "<access_key>" } } } }
+Click Start in your IDE to run BrowserStack MCP.
+Enter your BrowserStack username and access key to authenticate.
+STEP 2: Start AI-powered integration
+Open GitHub Copilot in agent mode in your IDE.
+Copy the AI prompt provided below.
+Paste it into the Copilot agent chat.
+Update the prompt with your actual project name and details as needed.
+Follow the agent’s instructions to complete Percy setup.
+Setup Percy with a new project named '<your-project-name>'
+You are now ready to leverage the Visual Test Integration Agent for fast, reliable Percy setup and seamless visual testing in your projects.
+Related topic
+Project types
+Contact our Support team for immediate help while we work on improving our docs.
+This page has exactly what I am looking for
+This content & code samples are accurate and up-to-date
+The content on this page is easy to understand
+Other (please tell us more below)
+Thank you for your valuable feedback
+ON THIS PAGE
+Is this page helping you?
+Contact our Support team for immediate help while we work on improving our docs.
+This page has exactly what I am looking for
+This content & code samples are accurate and up-to-date
+The content on this page is easy to understand
+Other (please tell us more below)
+Thank you for your valuable feedback!
+Download
+Copy
+Check Circle
+Welcome to Percy
+New to Percy?
+Select your framework and language to proceed
+Selenium
+Playwright
+Cypress
+Puppeteer
+Ember
+Storybook
+Gatsby
+Jekyll
+Appium
+Tricentis Tosca
+Build your own SDK

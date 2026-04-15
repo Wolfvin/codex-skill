@@ -160,11 +160,7 @@ $(if [ -n "$skill_files" ]; then echo "$skill_files" | head -n 40 | sed 's/^/- /
 Use this report as intake evidence, then curate only high-signal patterns into:
 - .codex/skills/*
 - .codex/README.md
-<<<<<<< HEAD
-- .codex/memory/akp2i_projects.md
-=======
 - .codex/memory/MEMORY.md
->>>>>>> origin/main
 REPORT
 
 if [ "$KEEP_CLONE" = false ]; then

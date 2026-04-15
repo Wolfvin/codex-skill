@@ -1,0 +1,299 @@
+Visual review agent | BrowserStack Docs
+Products Featured
+Explore our popular products
+Web Testing
+Test websites and web apps on real browsers
+Mobile App Testing
+Test iOS & Android mobile apps on real devices
+Accessibility
+Automate accessibility compliance for websites & mobile apps
+Explore our popular products
+Web Testing
+Live
+Manual cross-browser testing
+Automate
+Browser automation cloud
+Accessibility Testing
+Automate web compliance
+Low Code Automation
+Automation without coding
+Testing Toolkit
+Essential manual testing tools
+Mobile App Testing
+App Live
+Real device testing
+App Automate
+Mobile app automation cloud
+App Accessibility Testing
+Automate mobile app compliance
+Management & Optimization
+Test Management
+Plan, track and manage tests
+Test websites and web apps on real browsers
+Manual Testing
+Live
+Cross-browser testing
+Testing Toolkit
+Essential manual testing tools
+Test Automation
+Automate
+Browser automation cloud
+Percy
+Visual testing & review
+Custom Device Lab
+Tailored test environments
+Salesforce Test Automation
+AI-Native Salesforce Testing
+Management & Optimization
+Test Management
+Plan, track, and manage tests
+Test Management for Jira
+Manage tests inside Jira
+Test Reporting & Analytics
+Monitor & optimize tests
+Automation without coding
+Low Code Automation
+AI-driven automated tests
+Website Scanner
+All-in-one website checker
+Test iOS & Android mobile apps on real devices
+Manual Testing
+App Live
+Real device testing
+Test Automation
+App Automate
+Mobile app automation cloud
+App Percy
+Visual testing & review
+Custom Device Lab
+Tailored test environments
+Management & Optimization
+Test Management
+Plan, track and manage tests
+Test Management for Jira
+Manage tests inside Jira
+Test Reporting & Analytics
+Monitor & optimize tests
+Automation without coding
+App Low Code Automation
+AI-driven automated tests
+Automate accessibility compliance for websites & mobile apps
+Design
+Layout Scanner
+Scan UI layouts
+Component Scanner
+Validate UI components
+Code
+Linter
+WCAG checks in your IDE
+Web testing
+Workflow Analyzer
+Test web workflows
+Test Automation
+Add WCAG checks to CI/CD
+Screen Readers
+Test NVDA, TalkBack, VoiceOver
+Assisted Tests
+Guided WCAG issue testing
+Mobile app testing
+Workflow Analyzer
+Test app workflows
+Test Automation
+Add WCAG checks to CI/CD
+Screen Readers
+Test Talkback & VoiceOver
+Monitor
+Website Scanner
+Schedule WCAG sitemap scans
+Explore BrowserStack for Enterprise Requestly
+Explore BrowserStack for Enterprise Requestly
+Explore Spectra for Web Spectra for App AI Agents
+Developers Documentation
+Support
+Status
+Release Notes
+Open Source
+Events
+Meetups
+BrowserStack Talks
+Community
+Discord Community
+AI Agents
+Pricing
+Sign in
+Free Trial
+Products Featured Explore our popular products Web Testing Test websites and web apps on real browsers Mobile App Testing Test iOS & Android mobile apps on real devices Accessibility Automate accessibility compliance for websites & mobile apps
+Developers
+AI Agents
+Pricing
+Sign In
+FREE TRIAL
+Featured
+Web Testing
+Live Manual cross-browser testing
+Automate Browser automation cloud
+Accessibility Testing Automate web compliance
+Low Code Automation Automation without coding
+Testing Toolkit Essential manual testing tools
+Mobile App Testing
+App Live Real device testing
+App Automate Mobile app automation cloud
+App Accessibility Testing Automate mobile app compliance
+Management & Optimization
+Test Management Plan, track and manage tests
+Web Testing
+Manual Testing
+Live Cross-browser testing
+Testing Toolkit Essential manual testing tools
+Test Automation
+Automate Browser automation cloud
+Percy Visual testing & review
+Custom Device Lab Tailored test environments
+Salesforce Test Automation AI-Native Salesforce Testing
+Management & Optimization
+Test Management Plan, track, and manage tests
+Test Management for Jira Manage tests inside Jira
+Test Reporting & Analytics Monitor & optimize tests
+Automation without coding
+Low Code Automation AI-driven automated tests
+Website Scanner All-in-one website checker
+Explore
+BrowserStack for Enterprise
+Requestly
+Mobile App Testing
+Manual Testing
+App Live Real device testing
+Test Automation
+App Automate Mobile app automation cloud
+App Percy Visual testing & review
+Custom Device Lab Tailored test environments
+Management & Optimization
+Test Management Plan, track and manage tests
+Test Management for Jira Manage tests inside Jira
+Test Reporting & Analytics Monitor & optimize tests
+Automation without coding
+App Low Code Automation AI-driven automated tests
+Explore
+BrowserStack for Enterprise
+Requestly
+Accessibility
+Design
+Layout Scanner Scan UI layouts
+Component Scanner Validate UI components
+Code
+Linter WCAG checks in your IDE
+Web testing
+Workflow Analyzer Test web workflows
+Test Automation Add WCAG checks to CI/CD
+Screen Readers Test NVDA, TalkBack, VoiceOver
+Assisted Tests Guided WCAG issue testing
+Mobile app testing
+Workflow Analyzer Test app workflows
+Test Automation Add WCAG checks to CI/CD
+Screen Readers Test Talkback & VoiceOver
+Monitor
+Website Scanner Schedule WCAG sitemap scans
+Explore
+Spectra for Web
+Spectra for App
+AI Agents
+Developers
+Documentation
+Support
+Status
+Release Notes
+Open Source
+Events
+Meetups
+BrowserStack Talks
+Community
+Discord Community
+Visual Review Agent
+Use the Visual Review Agent for AI summaries and smarter visual differences.
+Traditional visual testing often flags minor differences, even those that are barely noticeable, leading to unnecessary reviews and slower release cycles. The AI-based Visual Review Agent reduces noise by identifying meaningful differences, cutting down on manual effort and review fatigue. With intelligent automation and natural language summaries, it helps streamline decision-making and improve testing efficiency.
+The following video explains how the Visual Review Agent feature works:
+Visual Review Agent is available only on paid plans of Percy.
+Smarter highlights with Visual Review Agent
+The review experience powered by Visual Review Agent replaces traditional pixel-based noise with cleaner, smarter highlights and summaries. The After image shows:
+A cleaner diff with only meaningful visual changes.
+A bug icon for potential bugs identified by AI.
+Clear summary of what changed.
+Benefits of using the Visual Review Agent
+Faster reviews : Focus on meaningful changes instead of pixel-level noise.
+Reduced false positives : AI distinguishes significant differences from minor pixel shifts.
+Human-like context : Understand changes at a glance with natural language summaries.
+Improved efficiency : Spend less time reviewing and more time shipping confidently.
+Get started
+The Visual Review Agent based review system goes beyond traditional pixel-by-pixel comparisons, providing a more intuitive and accurate review experience. Follow these steps to enable and use this feature.
+To leverage Visual Review Agent for visual testing, activate BrowserStack AI from the BrowserStack’s accounts settings page . For more information, check out our detailed documentation on activating AI preferences .
+Enable Visual Review Agent
+To enable the Visual Review Agent, go to the Build review screen of your Percy Project and toggle the AI-powered build button. Once enabled, all snapshots in the project are reviewed using the Visual Review Agent.
+Toggle interactions: Build and Snapshot level
+The Visual Review Agent offers flexible review options through two toggles:
+Build-level toggle: Sets the default review mode for the entire build and updates the snapshot-level toggles accordingly. Turning it off automatically turns off all snapshot-level AI toggles, setting your default review mode to non-AI.
+Turning it on automatically turns on all snapshot-level AI toggles, defaulting to AI diffs for all snapshots.
+Snapshot-level toggle – Lets you switch the mode for an individual snapshot, regardless of the default set at the build level. For example, if a Percy diff is difficult to interpret or shows many false positives, you can switch that snapshot to AI mode for clearer, natural-language descriptions.
+Toggle state management for snapshots
+If the build-level toggle is off, you can enable the snapshot-level toggle to view AI diffs for the current snapshot. This affects only the snapshot you are viewing.
+If the build-level toggle is on, the snapshot-level toggle defaults to AI for any snapshot not previously viewed in your current session.
+Visual bug classification
+The Visual Review Agent includes an AI-powered classification system that automatically analyzes every detected visual change. Instead of manually triaging each diff, the agent categorizes changes into two types:
+Irregular : Likely visual bugs. The AI identifies anomalies such as stretched images, squashed buttons, overlapping text, or significant CSS breakage. These changes appear with a bug icon outside a highlighted red bounding box.
+Valid : Likely intended updates. The AI recognizes purposeful content changes, intentional layout shifts, or minor styling updates that follow common design patterns. These changes do not include the bug icon and use a standard red bounding box highlight.
+By automatically tagging snapshots, the Visual Review Agent helps you focus on high-risk regressions first.
+Sort snapshots using AI insights
+To streamline your review workflow, you can use the Sort By dropdown to prioritize snapshots based on the AI insights using the following options:
+Bugs (High to Low) : The recommended default view. It sorts snapshots from High to Low based on the number of irregular tags, bringing snapshots most likely to contain critical bugs to the top.
+Diff % (High to Low) : A non-AI sorting option. It sorts snapshots from High to Low based on the total percentage of pixel change, regardless of AI classification.
+Build‑level ROI
+When you use the Visual Review Agent, each build now shows a summary of the time and effort saved by Percy AI. This includes:
+Fewer visual differences indicating the number of visual changes automatically filtered out as noise.
+Estimated review time saved showing how much time you avoid spending on reviewing those changes. These indicators update for every build, helping you quantify the value Percy Visual Review Agent brings to your visual testing workflow.
+AI visual change summaries
+Along with noise reduction and estimated review time saved, Percy also provides AI-driven insight into what changed in the build. AI Visual Changes summarizes key layout, text, color, and asset updates so you can understand the impact faster. For more information, see AI visual change summaries .
+View ignored changes
+You can show or hide changes filtered out by the Visual Review Agent, Regions, or Intelli ignore. These are grouped under a single control labeled Diffs ignored by . Click the highlighted icon to view the ignored changes.
+Once you enable AI, and if it ignores any differences, the build review screen highlights them with a purple bounding box, as shown in the image.
+Customization
+You can customize the Visual Review Agent’s behavior using prompts. This allows you to tailor how the AI analyzes visual changes and provides feedback based on your specific review preferences.
+For more information, see Visual Review Agent - Customization
+Provide feedback
+All team members with build comment permissions can give feedback on AI-generated differences and summaries. Following are the available feedback options:
+Thumbs up/down.
+Comment (optional): Enter up to 120 characters. This option is only available when a thumbs-up or thumbs-down is given.
+Things to keep in mind
+Visual Review Agent diffing is currently available for comparisons with vertical lengths under 13500px.
+If the Visual Review Agent diffing is active and you open the RCA panel, the panel will still display all differences from the standard Percy comparison.
+AI diff may not be available when a comparison contains a very large number of visual changes or when one or more changes are extremely large. In such cases, Percy falls back to standard visual diffs.
+When you draw a region or adjust diff sensitivity on a snapshot, Percy disables AI diff for that snapshot’s browser-width combination in the current build. Once disabled, AI diff remains unavailable for that comparison and Percy uses standard visual diffing instead.
+Contact our Support team for immediate help while we work on improving our docs.
+This page has exactly what I am looking for
+This content & code samples are accurate and up-to-date
+The content on this page is easy to understand
+Other (please tell us more below)
+Thank you for your valuable feedback
+ON THIS PAGE
+Is this page helping you?
+Contact our Support team for immediate help while we work on improving our docs.
+This page has exactly what I am looking for
+This content & code samples are accurate and up-to-date
+The content on this page is easy to understand
+Other (please tell us more below)
+Thank you for your valuable feedback!
+Download
+Copy
+Check Circle
+Welcome to Percy
+New to Percy?
+Select your framework and language to proceed
+Selenium
+Playwright
+Cypress
+Puppeteer
+Ember
+Storybook
+Gatsby
+Jekyll
+Appium
+Tricentis Tosca
+Build your own SDK

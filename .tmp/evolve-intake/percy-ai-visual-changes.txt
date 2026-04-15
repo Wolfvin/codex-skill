@@ -1,0 +1,276 @@
+AI visual change summaries | BrowserStack Docs
+Products Featured
+Explore our popular products
+Web Testing
+Test websites and web apps on real browsers
+Mobile App Testing
+Test iOS & Android mobile apps on real devices
+Accessibility
+Automate accessibility compliance for websites & mobile apps
+Explore our popular products
+Web Testing
+Live
+Manual cross-browser testing
+Automate
+Browser automation cloud
+Accessibility Testing
+Automate web compliance
+Low Code Automation
+Automation without coding
+Testing Toolkit
+Essential manual testing tools
+Mobile App Testing
+App Live
+Real device testing
+App Automate
+Mobile app automation cloud
+App Accessibility Testing
+Automate mobile app compliance
+Management & Optimization
+Test Management
+Plan, track and manage tests
+Test websites and web apps on real browsers
+Manual Testing
+Live
+Cross-browser testing
+Testing Toolkit
+Essential manual testing tools
+Test Automation
+Automate
+Browser automation cloud
+Percy
+Visual testing & review
+Custom Device Lab
+Tailored test environments
+Salesforce Test Automation
+AI-Native Salesforce Testing
+Management & Optimization
+Test Management
+Plan, track, and manage tests
+Test Management for Jira
+Manage tests inside Jira
+Test Reporting & Analytics
+Monitor & optimize tests
+Automation without coding
+Low Code Automation
+AI-driven automated tests
+Website Scanner
+All-in-one website checker
+Test iOS & Android mobile apps on real devices
+Manual Testing
+App Live
+Real device testing
+Test Automation
+App Automate
+Mobile app automation cloud
+App Percy
+Visual testing & review
+Custom Device Lab
+Tailored test environments
+Management & Optimization
+Test Management
+Plan, track and manage tests
+Test Management for Jira
+Manage tests inside Jira
+Test Reporting & Analytics
+Monitor & optimize tests
+Automation without coding
+App Low Code Automation
+AI-driven automated tests
+Automate accessibility compliance for websites & mobile apps
+Design
+Layout Scanner
+Scan UI layouts
+Component Scanner
+Validate UI components
+Code
+Linter
+WCAG checks in your IDE
+Web testing
+Workflow Analyzer
+Test web workflows
+Test Automation
+Add WCAG checks to CI/CD
+Screen Readers
+Test NVDA, TalkBack, VoiceOver
+Assisted Tests
+Guided WCAG issue testing
+Mobile app testing
+Workflow Analyzer
+Test app workflows
+Test Automation
+Add WCAG checks to CI/CD
+Screen Readers
+Test Talkback & VoiceOver
+Monitor
+Website Scanner
+Schedule WCAG sitemap scans
+Explore BrowserStack for Enterprise Requestly
+Explore BrowserStack for Enterprise Requestly
+Explore Spectra for Web Spectra for App AI Agents
+Developers Documentation
+Support
+Status
+Release Notes
+Open Source
+Events
+Meetups
+BrowserStack Talks
+Community
+Discord Community
+AI Agents
+Pricing
+Sign in
+Free Trial
+Products Featured Explore our popular products Web Testing Test websites and web apps on real browsers Mobile App Testing Test iOS & Android mobile apps on real devices Accessibility Automate accessibility compliance for websites & mobile apps
+Developers
+AI Agents
+Pricing
+Sign In
+FREE TRIAL
+Featured
+Web Testing
+Live Manual cross-browser testing
+Automate Browser automation cloud
+Accessibility Testing Automate web compliance
+Low Code Automation Automation without coding
+Testing Toolkit Essential manual testing tools
+Mobile App Testing
+App Live Real device testing
+App Automate Mobile app automation cloud
+App Accessibility Testing Automate mobile app compliance
+Management & Optimization
+Test Management Plan, track and manage tests
+Web Testing
+Manual Testing
+Live Cross-browser testing
+Testing Toolkit Essential manual testing tools
+Test Automation
+Automate Browser automation cloud
+Percy Visual testing & review
+Custom Device Lab Tailored test environments
+Salesforce Test Automation AI-Native Salesforce Testing
+Management & Optimization
+Test Management Plan, track, and manage tests
+Test Management for Jira Manage tests inside Jira
+Test Reporting & Analytics Monitor & optimize tests
+Automation without coding
+Low Code Automation AI-driven automated tests
+Website Scanner All-in-one website checker
+Explore
+BrowserStack for Enterprise
+Requestly
+Mobile App Testing
+Manual Testing
+App Live Real device testing
+Test Automation
+App Automate Mobile app automation cloud
+App Percy Visual testing & review
+Custom Device Lab Tailored test environments
+Management & Optimization
+Test Management Plan, track and manage tests
+Test Management for Jira Manage tests inside Jira
+Test Reporting & Analytics Monitor & optimize tests
+Automation without coding
+App Low Code Automation AI-driven automated tests
+Explore
+BrowserStack for Enterprise
+Requestly
+Accessibility
+Design
+Layout Scanner Scan UI layouts
+Component Scanner Validate UI components
+Code
+Linter WCAG checks in your IDE
+Web testing
+Workflow Analyzer Test web workflows
+Test Automation Add WCAG checks to CI/CD
+Screen Readers Test NVDA, TalkBack, VoiceOver
+Assisted Tests Guided WCAG issue testing
+Mobile app testing
+Workflow Analyzer Test app workflows
+Test Automation Add WCAG checks to CI/CD
+Screen Readers Test Talkback & VoiceOver
+Monitor
+Website Scanner Schedule WCAG sitemap scans
+Explore
+Spectra for Web
+Spectra for App
+AI Agents
+Developers
+Documentation
+Support
+Status
+Release Notes
+Open Source
+Events
+Meetups
+BrowserStack Talks
+Community
+Discord Community
+AI visual change summaries
+Understand how Percy summarizes visual changes using AI and how to review them efficiently.
+Percy’s AI Visual Changes feature automatically analyzes your build screenshots and summarizes key visual updates. Using advanced machine learning, it identifies layout shifts, text and color changes, and asset modifications, helping you quickly understand the impact of each change and speed up your review process.
+Benefits
+AI visual summaries help you:
+Understand diffs quickly and speed up your visual review process.
+Spot regressions faster without reviewing all snapshots.
+Prioritize reviewing the most relevant or high-impact changes.
+See related visual changes grouped together in the summary for faster understanding.
+Prerequisites
+Before using AI visual change summaries:
+Set up Percy and ensure baseline screenshots exist.
+Enable the Visual Review Agent AI toggle for the build; summaries appear only when this toggle is on.
+The Visual Review Agent is available on paid Percy plans. For details, see the Visual Review Agent page.
+AI summary
+Percy generates an AI-driven summary at the top of the build review page, above the snapshot thumbnails. This summary provides a quick, high-level view of the visual updates detected in the build without opening individual diffs. By default, the following applies:
+The summary appears collapsed with a callout indicating that an AI summary is available.
+Each summary item includes a number in brackets, which indicates how many snapshots are affected by that specific change.
+Group by visual changes
+To group snapshots based on AI-detected visual changes, use the Group by visual changes option. Open the AI summary and click Show More to access this grouping control.
+Expand it to view grouped changes and access the Group by visual changes option.
+You can open the grouped view either from the expanded AI summary using Group by visual changes or from the left navigation under the Group snapshots by section.
+When you enable grouping, Percy hides the summary to:
+Maximize review space and reorganizes snapshots under AI-generated headers such as “Your rewards section added.”
+Adds an Unchanged snapshots group at the end.
+To exit the grouped view, clear the grouping to return to the standard snapshot list.
+Things to know
+Review these constraints and states before relying on the summary:
+Percy does not generate a summary if a build has more than 50 comparisons with differences.
+A summary appears only when AI diff is available for all comparisons with differences in the build. If the AI diff is not available, refer to the Visual Review Agent documentation for possible reasons.
+The summary and its groups remain tied to the diffs detected during the build run. Any actions taken afterward such as adding or ignoring regions, applying AI prompts, or switching A/B variants do not update or regenerate the summary.
+For more information, check Visual Review Agent documentation page.
+Related topics
+Group by test case name
+Group with matching diffs
+Contact our Support team for immediate help while we work on improving our docs.
+This page has exactly what I am looking for
+This content & code samples are accurate and up-to-date
+The content on this page is easy to understand
+Other (please tell us more below)
+Thank you for your valuable feedback
+ON THIS PAGE
+Is this page helping you?
+Contact our Support team for immediate help while we work on improving our docs.
+This page has exactly what I am looking for
+This content & code samples are accurate and up-to-date
+The content on this page is easy to understand
+Other (please tell us more below)
+Thank you for your valuable feedback!
+Download
+Copy
+Check Circle
+Welcome to Percy
+New to Percy?
+Select your framework and language to proceed
+Selenium
+Playwright
+Cypress
+Puppeteer
+Ember
+Storybook
+Gatsby
+Jekyll
+Appium
+Tricentis Tosca
+Build your own SDK

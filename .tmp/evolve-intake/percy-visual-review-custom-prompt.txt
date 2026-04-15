@@ -1,0 +1,322 @@
+Visual review agent - Customization | BrowserStack Docs
+Products Featured
+Explore our popular products
+Web Testing
+Test websites and web apps on real browsers
+Mobile App Testing
+Test iOS & Android mobile apps on real devices
+Accessibility
+Automate accessibility compliance for websites & mobile apps
+Explore our popular products
+Web Testing
+Live
+Manual cross-browser testing
+Automate
+Browser automation cloud
+Accessibility Testing
+Automate web compliance
+Low Code Automation
+Automation without coding
+Testing Toolkit
+Essential manual testing tools
+Mobile App Testing
+App Live
+Real device testing
+App Automate
+Mobile app automation cloud
+App Accessibility Testing
+Automate mobile app compliance
+Management & Optimization
+Test Management
+Plan, track and manage tests
+Test websites and web apps on real browsers
+Manual Testing
+Live
+Cross-browser testing
+Testing Toolkit
+Essential manual testing tools
+Test Automation
+Automate
+Browser automation cloud
+Percy
+Visual testing & review
+Custom Device Lab
+Tailored test environments
+Salesforce Test Automation
+AI-Native Salesforce Testing
+Management & Optimization
+Test Management
+Plan, track, and manage tests
+Test Management for Jira
+Manage tests inside Jira
+Test Reporting & Analytics
+Monitor & optimize tests
+Automation without coding
+Low Code Automation
+AI-driven automated tests
+Website Scanner
+All-in-one website checker
+Test iOS & Android mobile apps on real devices
+Manual Testing
+App Live
+Real device testing
+Test Automation
+App Automate
+Mobile app automation cloud
+App Percy
+Visual testing & review
+Custom Device Lab
+Tailored test environments
+Management & Optimization
+Test Management
+Plan, track and manage tests
+Test Management for Jira
+Manage tests inside Jira
+Test Reporting & Analytics
+Monitor & optimize tests
+Automation without coding
+App Low Code Automation
+AI-driven automated tests
+Automate accessibility compliance for websites & mobile apps
+Design
+Layout Scanner
+Scan UI layouts
+Component Scanner
+Validate UI components
+Code
+Linter
+WCAG checks in your IDE
+Web testing
+Workflow Analyzer
+Test web workflows
+Test Automation
+Add WCAG checks to CI/CD
+Screen Readers
+Test NVDA, TalkBack, VoiceOver
+Assisted Tests
+Guided WCAG issue testing
+Mobile app testing
+Workflow Analyzer
+Test app workflows
+Test Automation
+Add WCAG checks to CI/CD
+Screen Readers
+Test Talkback & VoiceOver
+Monitor
+Website Scanner
+Schedule WCAG sitemap scans
+Explore BrowserStack for Enterprise Requestly
+Explore BrowserStack for Enterprise Requestly
+Explore Spectra for Web Spectra for App AI Agents
+Developers Documentation
+Support
+Status
+Release Notes
+Open Source
+Events
+Meetups
+BrowserStack Talks
+Community
+Discord Community
+AI Agents
+Pricing
+Sign in
+Free Trial
+Products Featured Explore our popular products Web Testing Test websites and web apps on real browsers Mobile App Testing Test iOS & Android mobile apps on real devices Accessibility Automate accessibility compliance for websites & mobile apps
+Developers
+AI Agents
+Pricing
+Sign In
+FREE TRIAL
+Featured
+Web Testing
+Live Manual cross-browser testing
+Automate Browser automation cloud
+Accessibility Testing Automate web compliance
+Low Code Automation Automation without coding
+Testing Toolkit Essential manual testing tools
+Mobile App Testing
+App Live Real device testing
+App Automate Mobile app automation cloud
+App Accessibility Testing Automate mobile app compliance
+Management & Optimization
+Test Management Plan, track and manage tests
+Web Testing
+Manual Testing
+Live Cross-browser testing
+Testing Toolkit Essential manual testing tools
+Test Automation
+Automate Browser automation cloud
+Percy Visual testing & review
+Custom Device Lab Tailored test environments
+Salesforce Test Automation AI-Native Salesforce Testing
+Management & Optimization
+Test Management Plan, track, and manage tests
+Test Management for Jira Manage tests inside Jira
+Test Reporting & Analytics Monitor & optimize tests
+Automation without coding
+Low Code Automation AI-driven automated tests
+Website Scanner All-in-one website checker
+Explore
+BrowserStack for Enterprise
+Requestly
+Mobile App Testing
+Manual Testing
+App Live Real device testing
+Test Automation
+App Automate Mobile app automation cloud
+App Percy Visual testing & review
+Custom Device Lab Tailored test environments
+Management & Optimization
+Test Management Plan, track and manage tests
+Test Management for Jira Manage tests inside Jira
+Test Reporting & Analytics Monitor & optimize tests
+Automation without coding
+App Low Code Automation AI-driven automated tests
+Explore
+BrowserStack for Enterprise
+Requestly
+Accessibility
+Design
+Layout Scanner Scan UI layouts
+Component Scanner Validate UI components
+Code
+Linter WCAG checks in your IDE
+Web testing
+Workflow Analyzer Test web workflows
+Test Automation Add WCAG checks to CI/CD
+Screen Readers Test NVDA, TalkBack, VoiceOver
+Assisted Tests Guided WCAG issue testing
+Mobile app testing
+Workflow Analyzer Test app workflows
+Test Automation Add WCAG checks to CI/CD
+Screen Readers Test Talkback & VoiceOver
+Monitor
+Website Scanner Schedule WCAG sitemap scans
+Explore
+Spectra for Web
+Spectra for App
+AI Agents
+Developers
+Documentation
+Support
+Status
+Release Notes
+Open Source
+Events
+Meetups
+BrowserStack Talks
+Community
+Discord Community
+Visual Review Agent - Customization
+Tailor the Visual Review Agent’s behavior with customizable prompts and visibility rules.
+You can customize the Visual Review Agent to refine how it analyzes and presents visual differences. This feature allows you to define prompts and rules that guide the AI’s behavior, helping you focus on meaningful visual changes and reduce unnecessary noise.
+Benefits
+Deliver targeted visual feedback that aligns with your visual testing goals.
+Focus reviews on meaningful visual changes by hiding irrelevant updates and highlighting critical ones.
+Reduces noise by ignoring acceptable visual differences.
+Maintains consistency across builds through reusable rules.
+Example prompts
+Here are sample prompts for customizing how the Visual Review Agent handles different types of visual changes:
+Visual change
+❌ Less effective prompt
+✅ Effective prompt
+Why it’s better
+Minor shifts in logo
+Ignore layout changes
+Ignore small pixel or layout adjustments in static logos
+Specifies the type and location of changes to ignore
+Monetary values
+Ignore number change
+Ignore changes in monetary values, such as payment amounts or prices
+Clearly defines which numerical changes to ignore
+Content ordering
+Ignore change in order
+Ignore reordering of dynamic content within a table
+Specifies the context and scope of ordering changes
+Icon changes
+Show icon addition
+Show changes to dynamic or interactive icons
+Broadens scope to include all meaningful icon changes
+Critical UI text
+Show text changes
+Always show text changes in headers and call-to-action buttons
+Pinpoints specific areas where text changes matter
+Access the prompt manager
+When AI is enabled, you can access the Prompt manager in two ways:
+AI Prompt icon : Click the prompt icon directly while reviewing a build. This opens the prompt manager, where you can enter your prompt.
+Via NL description text option : Click an NL description to open the Prompt manager.
+This automatically generates a suggested prompt, which you can choose to edit or discard. You may also provide your own custom prompt.
+Once a prompt is submitted, you must confirm it with the AI to run it.
+After reviewing the AI’s response, you need to confirm again for the response to be saved for the entire build. The AI processes the prompt using the browsers enabled for that snapshot to deliver accurate and consistent visual insights.
+Key capabilities
+Explore the main customization features that help you customize, manage, and apply visual review rules effectively:
+Manage Ignore rules and Always show rules
+You can manage two types of rules in the prompt manager:
+Ignore Rules: Hide specific types of visual changes, such as “ignore color shifts in icons.”
+Always Show Rules: Ensure critical changes are always displayed, such as “always show text updates in the header.”
+Rules can be defined at different levels: Project level: Apply to all snapshots within a project.
+Snapshot level: Override project rules for that specific snapshot.
+Snapshot-level rules take precedence over project-level rules.
+Edit prompts directly from the build review page
+You can open the prompt manager directly from any build’s review page to:
+Add, edit, or delete prompts and rules.
+Save changes to automatically regenerate AI diffs.
+Revert to the previous filter if needed.
+Apply rules inline
+When reviewing a diff, you can create or apply rules inline:
+Select Ignore changes like this to hide similar visual differences in future builds.
+Select Always show changes like this to ensure they remain visible in future reviews.
+These inline actions automatically generate suggested rules, which you can edit and save at either the snapshot or project level.
+Prompt application across builds
+Newly created or edited rules are automatically applied to future builds.
+Existing or in-progress builds continue using the previously active prompts to maintain result consistency.
+Prompt limits
+To maintain optimal performance and fair usage, the following limits apply:
+Each rule can be up to 400 characters long.
+A daily quota applies for regenerating comparisons after prompt edits. Paid groups can perform up to 200 regenerations per day.
+If the quota is exceeded, you can try again the next day when the limit resets.
+View audit information
+Each rule includes detailed audit information to support collaboration and transparency. The audit log displays:
+The name and email of the last person who edited the rule.
+The timestamp of the last update.
+The build number where the change was made.
+Revert to a previous filter
+After applying a new set of rules, you can revert to the previous filter directly from the Prompt Manager.
+This restores the diff state and prompts from before the latest edit.
+Useful when testing new prompt configurations or rolling back unhelpful rules.
+Best practices
+Keep prompts short and specific to one type of visual behavior.
+Use project-level rules to maintain consistency across Percy builds, and snapshot-level rules to handle specific exceptions.
+Review and refine prompts periodically to align with evolving design or testing standards.
+Contact our Support team for immediate help while we work on improving our docs.
+This page has exactly what I am looking for
+This content & code samples are accurate and up-to-date
+The content on this page is easy to understand
+Other (please tell us more below)
+Thank you for your valuable feedback
+ON THIS PAGE
+Is this page helping you?
+Contact our Support team for immediate help while we work on improving our docs.
+This page has exactly what I am looking for
+This content & code samples are accurate and up-to-date
+The content on this page is easy to understand
+Other (please tell us more below)
+Thank you for your valuable feedback!
+Download
+Copy
+Check Circle
+Welcome to Percy
+New to Percy?
+Select your framework and language to proceed
+Selenium
+Playwright
+Cypress
+Puppeteer
+Ember
+Storybook
+Gatsby
+Jekyll
+Appium
+Tricentis Tosca
+Build your own SDK

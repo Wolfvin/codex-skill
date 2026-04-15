@@ -1,0 +1,4 @@
+interface:
+  display_name: "TypeScript Inject"
+  short_description: "Injeksi konteks TS/JS untuk implementasi aman"
+  default_prompt: "Use $typescript-inject to run diagnostics and refactor-safety checks for TypeScript/JavaScript changes."

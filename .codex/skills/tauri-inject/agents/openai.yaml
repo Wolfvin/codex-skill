@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tauri Inject"
+  short_description: "Inject Tauri template/plugin/integration context before implementation"
+  default_prompt: "Use tauri-inject to choose the smallest correct Tauri stack (template, plugin, integration notes) with compatibility and security constraints."

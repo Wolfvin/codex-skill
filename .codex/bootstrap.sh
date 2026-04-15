@@ -128,17 +128,10 @@ link_project_skills() {
 }
 
 initialize_memory() {
-<<<<<<< HEAD
-  echo "[4/5] Inisialisasi .codex/memory/akp2i_projects.md"
-  local memory_file="$SCRIPT_DIR/memory/akp2i_projects.md"
-  if [ ! -f "$memory_file" ]; then
-    echo "  - skip: akp2i_projects.md tidak ditemukan"
-=======
   echo "[4/5] Inisialisasi .codex/memory/MEMORY.md"
   local memory_file="$SCRIPT_DIR/memory/MEMORY.md"
   if [ ! -f "$memory_file" ]; then
     echo "  - skip: MEMORY.md tidak ditemukan"
->>>>>>> origin/main
     return
   fi
 

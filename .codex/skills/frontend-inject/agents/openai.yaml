@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frontend Inject"
+  short_description: "Inject frontend design constraints from DESIGN.md or fallback brief"
+  default_prompt: "Use frontend-inject to load DESIGN.md constraints when available; otherwise build a concise fallback design brief before implementation."

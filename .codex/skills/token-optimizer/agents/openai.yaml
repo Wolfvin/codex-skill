@@ -1,0 +1,4 @@
+interface:
+  display_name: "Token Optimizer"
+  short_description: "Kurangi tekanan token tanpa turunkan kualitas"
+  default_prompt: "Use token-optimizer to audit context bloat, protect quality after compaction, and choose the safest token reduction path."

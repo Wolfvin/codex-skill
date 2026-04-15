@@ -1,4 +1,0 @@
-interface:
-  display_name: "Intelect Inject"
-  short_description: "Inject frontend and TypeScript context"
-  default_prompt: "Use intelect_inject as context child of smart-plan for frontend or TS/JS tasks."

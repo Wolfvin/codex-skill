@@ -1,0 +1,15 @@
+{
+  "hooks": [
+    {
+      "managed_key": "user_custom",
+      "event": "SessionStart",
+      "command": "echo keep"
+    },
+    {
+      "managed_key": "omx_wrapper",
+      "event": "*",
+      "command": "new_cmd",
+      "enabled": true
+    }
+  ]
+}

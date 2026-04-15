@@ -1,0 +1,4 @@
+interface:
+  display_name: "Intelect Inject"
+  short_description: "Inject context via frontend/typescript/tauri child skills + web-search fallback"
+  default_prompt: "Use intelect-inject as context orchestrator with skill-router discipline: route to frontend-inject, typescript-inject, or tauri-inject using minimal scope-locked child set; fallback to $web-search only when domain context is still insufficient."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Think"
+  short_description: "Gate berpikir terstruktur sebelum eksekusi"
+  default_prompt: "Use think first to detect context gaps, state uncertainty honestly, route web-search when needed, then execute with evidence-level checks."

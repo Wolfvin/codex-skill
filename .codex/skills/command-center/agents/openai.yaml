@@ -1,4 +1,4 @@
 interface:
   display_name: "Command Center"
-  short_description: "Run agent workflow from one CLI"
-  default_prompt: "Use command-center to run this bootstrap/intake/connector workflow."
+  short_description: "Run bootstrap/intake/MCP ops with session hygiene"
+  default_prompt: "Use command-center to run bootstrap/intake/connector workflow and apply session hygiene gates (/status, /compact, /new, /mcp)."

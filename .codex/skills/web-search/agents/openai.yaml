@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Search"
+  short_description: "Cari konteks eksternal efisien dengan mode quick/default/deep"
+  default_prompt: "Use $web-search with efficient backend selection (native_search -> metasearch_backend -> deep_research_orchestrator), plus recency and evidence gates, before planning or implementation."
