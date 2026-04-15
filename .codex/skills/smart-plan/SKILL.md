@@ -61,6 +61,58 @@ Untuk task baru/ambigu, jalankan gate brainstorming sebelum implementasi:
 Larangan:
 - Jangan coding sebelum design disetujui (kecuali user eksplisit minta direct execution).
 
+## Prompt Workflow Troubleshooting Gate
+
+Untuk task troubleshooting/debug, rencana harus memuat:
+1. Prasyarat runtime/session yang harus valid dulu.
+2. Urutan workflow prompt/command bertahap (bukan lompat ke fix).
+3. Checkpoint verifikasi per langkah (status koneksi, evidence log/screenshot, hasil cek kontrak).
+4. Cabang recovery jika gate gagal (retry, restart runtime terkait, atau stop dengan blocker jelas).
+
+Jika command workflow tersedia sebagai slash/prompt template:
+- pakai template sebagai baseline runbook
+- tetap validasi precondition sebelum eksekusi template
+- laporkan output yang bisa diaudit (bukan asumsi sukses)
+
+## Skills-First Surface Policy
+
+- Rencanakan eksekusi berbasis skill sebagai surface utama.
+- Gunakan command legacy hanya sebagai compatibility shim saat memang diperlukan.
+- Jika ada konflik antara skill flow vs command lama, prioritaskan skill flow yang canonical.
+
+## Guardrail Pipeline (Plan -> Check -> Review -> Security -> Release)
+
+Untuk task delivery non-trivial, masukkan gate berikut ke plan:
+1. plan/spec gate
+2. verification/check gate
+3. review gate (correctness + regression)
+4. security gate
+5. release/readiness gate
+
+## Stateful Task Lifecycle
+
+Gunakan state eksplisit untuk task kompleks:
+- `draft`: ide awal dan ruang lingkup kasar
+- `todo`: spesifikasi siap dieksekusi
+- `in-progress`: implementasi aktif dengan checkpoint verifikasi
+- `done`: semua gate lolos
+
+Jika verifikasi gagal berulang, kembalikan state ke `todo` untuk replanning.
+
+## Context Budget Planning
+
+Untuk task panjang, tetapkan mode context sebelum eksekusi:
+- low: command-oriented, minim artefak
+- medium: plan + implement standar
+- high: plan rinci + verification panel + reflect phase
+
+## Reflect Before Final Verdict
+
+Untuk task high-risk/ambigu, jalankan reflect phase singkat sebelum status `READY`:
+1. evaluasi gap requirement vs hasil
+2. cek residual risk tersembunyi
+3. update final verdict berdasarkan hasil refleksi
+
 ## Output Wajib
 - plan artifact + current gate
 - files changed + verification evidence

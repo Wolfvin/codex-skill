@@ -1,17 +1,10 @@
 ---
 name: skill-router
-<<<<<<< HEAD
 description: Unified routing and skill discovery workflow. Use when user prompt is ambiguous/non-specific, when multiple skills may apply, or when user needs to find/install/manage skills. This router can select one or many skills depending on complexity (especially when smart-plan indicates multi-phase work).
-=======
-description: >
-  Routes user intent to the best-fit skills using a keyword catalog and
-  execution priority. Use when prompt can map to multiple skills.
->>>>>>> origin/main
 ---
 
 # Skill Router
 
-<<<<<<< HEAD
 Skill gabungan dari `skill-router` dan `skills-search`.
 
 ## Trigger
@@ -36,6 +29,28 @@ bash .codex/tools/skill-navigator.sh suggest <user-prompt>
 - domain workflow
 - verification/quality
 
+## Canonical Owner Rule
+
+Untuk domain yang sempit dan sangat operasional:
+- utamakan 1 skill owner yang komprehensif
+- hindari memecah domain sama ke banyak skill overlap tanpa alasan kuat
+- jika ada overlap, pilih canonical owner lalu rujuk skill lain hanya sebagai pelengkap
+
+## Skills-First, Legacy-Shim Second
+
+- Prioritaskan route ke skill canonical terlebih dahulu.
+- Gunakan command legacy hanya jika:
+- user eksplisit minta command lama, atau
+- compatibility sementara masih dibutuhkan oleh tool/harness tertentu.
+- Saat dua jalur tersedia, pilih jalur skill yang paling maintainable.
+
+## Token-Budget Routing Gate
+
+Saat intent sudah jelas, pilih jalur dengan footprint context paling kecil yang tetap aman:
+- simple task: command/on-demand flow
+- medium/complex task: skill flow dengan quality gate
+- high-risk task: skill flow + `smart-plan` verification gate
+
 ## Skills Search Mode (CCPM)
 
 Gunakan ketika user minta cari/install/update skill:
@@ -55,27 +70,3 @@ npx @daymade/ccpm <command>
 - Pakai minimal skill set yang cukup untuk task.
 - Hindari workflow konflik.
 - Bila confidence rendah, tambahkan quality gate via `smart-plan` verification mode.
-=======
-## Trigger
-- User prompt is broad/ambiguous.
-- Multiple skills may apply.
-- Need deterministic skill selection order.
-
-## Routing Protocol
-
-1. Parse intent from prompt.
-2. Run:
-```bash
-bash .codex/tools/skill-navigator.sh suggest <user-prompt>
-```
-3. Select top 1-3 skills by relevance score.
-4. Execute in this order:
-- orchestration/setup first
-- domain workflow second
-- verification/quality last
-
-## Guardrails
-- Prefer minimal skill set that fully covers the task.
-- Avoid parallel/conflicting workflows unless explicitly needed.
-- If confidence is low, use `anti-hallucination-suite` for final answer quality gate.
->>>>>>> origin/main

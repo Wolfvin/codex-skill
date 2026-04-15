@@ -46,9 +46,42 @@ Urutan review:
 4. Remediation slices
 - ubah top debt menjadi chunk eksekusi per sprint.
 
+## Mode 4 - Operational Misuse Review
+Gunakan untuk review bug yang akar masalahnya salah pemakaian command/runtime:
+1. identifikasi kontrak command yang dilanggar
+2. klasifikasikan severity misuse (critical/high/medium)
+3. tampilkan wrong pattern vs correct pattern
+4. rekomendasikan guardrail permanen (checklist, preflight gate, linting/CI check jika memungkinkan)
+
+## Mode 5 - Surface Consistency Audit
+Gunakan saat ada banyak permukaan metadata (README, manifest, marketplace, docs):
+1. bandingkan angka/metadata penting antar surface
+2. catat mismatch (count, version, command install, kategori)
+3. tandai source canonical yang benar
+4. rekomendasikan update sinkronisasi agar tidak drift lagi
+
+## Mode 6 - Spec Consistency Review
+Gunakan untuk workflow specification-driven:
+1. cek keselarasan spesifikasi vs implementasi
+2. identifikasi requirement yang hilang atau salah tafsir
+3. minta perbaikan spesifikasi dulu jika mismatch fundamental
+
+## Post-Review Reflection Loop
+- Untuk temuan critical/high, jalankan satu putaran refleksi:
+- critique temuan -> usulkan perbaikan -> re-check cepat
+- simpan insight reusable ke checkpoint jika pola berulang
+
+## Guardrail Review Pipeline
+- Verifikasi plan/check evidence ada.
+- Review correctness + regression.
+- Review security-impact.
+- Validasi readiness sebelum status READY.
+
 ## Output Contract
 - findings first (severity + file + impact + recommendation)
 - residual risk + missing tests
 - jika mode simplify: daftar simplifikasi + verifikasi parity
 - jika mode debt: debt scorecard + urutan remediasi + risiko jika ditunda
 - jika TS/JS stack: sertakan hasil ringkas diagnostics gate
+- jika mode misuse: daftar contract violation + correct usage pattern
+- jika mode consistency: daftar mismatch surface + canonical fix plan

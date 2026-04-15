@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Push"
+  short_description: "Commit and push safely with no-merge policy"
+  default_prompt: "Use $github to prepare a clean commit and push the current branch to GitHub with no-merge safeguards."

@@ -69,3 +69,30 @@ Gunakan saat belum ada MCP yang cocok.
 - Konfigurasi MCP yang dipasang/dibuat.
 - Hasil verifikasi koneksi/tool.
 - Catatan risiko + next step.
+
+## Runtime Contract and Preflight Rules
+
+Saat integrasi/build MCP untuk automation workflow:
+1. Definisikan lifecycle session/client secara eksplisit (start, status, stop, recovery).
+2. Jangan anggap "start sukses" berarti koneksi benar-benar aktif; selalu cek status aktif.
+3. Dokumentasikan failure mode utama + wrong/right command pattern.
+4. Tegaskan kontrak output tool (contoh: output file vs payload inline) agar tidak disalahgunakan.
+5. Bedakan failure komponen:
+- session issue (cukup reconnect)
+- daemon/runtime process issue (perlu restart service)
+- plugin/bridge issue (perlu validasi install/registration)
+
+## Selective Install Lifecycle for MCP Surface
+
+Jika integrasi MCP punya banyak komponen:
+1. Plan dulu paket yang dipasang (profile/module/component), jangan pasang semua.
+2. Terapkan bertahap dan catat install-state per target environment.
+3. Tambahkan doctor check untuk deteksi missing/drift konfigurasi.
+4. Tambahkan repair path agar state bisa dipulihkan cepat tanpa reset total.
+
+## Cross-Harness MCP Packaging
+
+Untuk dukungan banyak harness:
+- kelola spesifikasi MCP di sumber canonical
+- generate/adapt file konfigurasi per harness dari spesifikasi tersebut
+- jalankan consistency check berkala agar metadata tool/command tidak drift antar surface

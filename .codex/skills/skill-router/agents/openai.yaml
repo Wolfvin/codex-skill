@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Router"
+  short_description: "Route ambiguous prompts to the right skills"
+  default_prompt: "Use skill-router to select the minimum effective skill set for this request."

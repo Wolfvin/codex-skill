@@ -86,6 +86,35 @@ Aturan pruning:
 3. Hapus skill lemah setelah migrasi selesai.
 4. Update `plan.md` agar inventory tetap akurat.
 
+### Canonical Owner Preference
+Saat domain bersifat sempit dan sangat operasional, prefer:
+- 1 skill canonical owner yang end-to-end
+- skill lain hanya sebagai support/referral, bukan duplikasi coverage
+
+Gunakan rule ini untuk menekan overlap dan noise saat proses evolve.
+
+### Skills-First Compatibility Rule
+- Tetapkan `skills/` sebagai workflow surface utama.
+- Pertahankan command lama hanya sebagai shim kompatibilitas jika masih dibutuhkan.
+- Saat migrate, pindahkan logic utama ke skill lebih dulu, lalu tipiskan shim secara bertahap.
+
+### Surface Consistency Audit
+Setiap siklus evolve wajib cek konsistensi metadata lintas surface:
+- README/docs
+- manifest/plugin metadata
+- marketplace listing
+
+Jika ada mismatch, output harus memuat:
+- field yang drift
+- canonical source of truth
+- rencana sinkronisasi minimal
+
+### Mandatory Sync Checklist
+Setelah patch evolve dieksekusi, wajib cek:
+- versi/metadata plugin atau skill yang berubah
+- referensi README/docs/reference tetap sinkron
+- command install dan nama plugin/skill konsisten lintas surface
+
 ## Decision Flow
 
 1. User kasih repo/link -> jalankan source intake.
@@ -102,6 +131,40 @@ Aturan pruning:
 - daftar skill yang dipertahankan vs dihapus (dengan alasan)
 - file yang diubah
 - ringkasan dampak kualitas skill set setelah evolve
+
+## Format Audit Ilmu (Wajib)
+
+Gunakan struktur output ini agar audit mudah dan konsisten:
+
+```text
+ilmu yang di ekstrak:
+1. <unit_name>
+source_link: <path/link sumber>
+confidence: <high|medium|low>
+REKOMENDASI EVOLVE:
+- <skill-target-1>
+purpose skill lama:
+apa yang ditambahkan:
+apa yang di gantikan:
+- <skill-target-2>
+purpose skill lama:
+apa yang ditambahkan:
+apa yang di gantikan:
+- <skill-target-3>
+purpose skill lama:
+apa yang ditambahkan:
+apa yang di gantikan:
+2. <unit_name berikutnya>
+...
+```
+
+Aturan:
+- Jangan ubah urutan field.
+- Untuk setiap skill target, wajib isi tiga field:
+  - `purpose skill lama`
+  - `apa yang ditambahkan`
+  - `apa yang di gantikan`
+- Jika tidak ada yang digantikan, tulis `tidak ada`.
 
 ## Format Konfirmasi (Wajib Dipakai)
 

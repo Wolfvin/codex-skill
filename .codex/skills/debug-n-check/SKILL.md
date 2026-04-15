@@ -64,3 +64,42 @@ Output minimal:
 - One issue at a time.
 - No unrelated refactor.
 - Stop and escalate jika setelah 5 iterasi belum stabil.
+
+## Session and Runtime Gates (Automation/MCP)
+
+Jika debugging melibatkan automation driver/MCP session, wajib jalankan gate ini:
+1. Start session lalu cek status koneksi, jangan asumsi start = connected.
+2. Validasi output status yang menunjukkan koneksi aktif sebelum panggil tool lain.
+3. Jika muncul error "no active session", ulangi session start + status check.
+4. Bedakan masalah session vs daemon:
+- session stop: putuskan koneksi kerja saat ini
+- daemon restart/stop: untuk proses background yang stale
+
+Failure mode prioritas tinggi yang harus dicek dulu:
+- menjalankan tool sebelum session aktif
+- percaya start command tanpa verifikasi status koneksi
+- salah format flag/arg sehingga command jalan tapi perilaku meleset
+- misuse output contract (misalnya mengharap bytes padahal tool menulis file)
+
+## Guardrail Pipeline (Execution Order)
+
+Untuk issue yang kompleks, jalankan urutan ini:
+1. Plan hipotesis + scope reproduksi.
+2. Verify precondition (session/runtime/config).
+3. Apply fix minimal.
+4. Review dampak (regresi/security/performance singkat).
+5. Re-verify evidence akhir.
+
+## Selective Install Recovery
+
+Jika bug berasal dari instalasi tooling/skill yang parsial:
+- cek install-state yang aktif
+- jalankan doctor untuk temukan drift/missing file
+- jalankan repair terarah sebelum melakukan reinstall penuh
+
+## Replan Fallback Rule
+
+Jika verifikasi gagal berulang (maksimal 3 siklus fix tambahan setelah hipotesis awal):
+1. hentikan patch lanjutan
+2. rollback ke state perencanaan
+3. buat hipotesis baru dan jalur verifikasi baru sebelum lanjut implementasi
